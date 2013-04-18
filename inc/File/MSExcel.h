@@ -22,12 +22,19 @@
 #include <QString>
 #include <QStringList>
 
+#if defined(Q_OS_WIN)
 #include <ActiveQt/QAxWidget>
 #include <ActiveQt/QAxObject>
 
 #ifdef QT_WIDGETS_LIB
 #include <QTreeWidget>
 #endif
+#else
+class QAxObject
+{
+};
+#endif // Q_OS_WIN
+
 
 TIANCHI_BEGIN_NAMESPACE
 

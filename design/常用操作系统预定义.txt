@@ -1,0 +1,18 @@
+常用操作系统预定义
+
+
+// 常用操作系统预定义
+// Q_OS_WIN
+// Q_OS_WIN32
+// Q_OS_WIN64
+// Q_OS_WINCE
+
+// Q_OS_LINUX
+
+// Q_OS_MAC
+
+// 常用编译器预定义
+// _MSC_VER
+// __GNUC__
+// __BORLANDC__
+
