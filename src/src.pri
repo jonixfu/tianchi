@@ -1,5 +1,5 @@
 QT += gui sql network script
-greaterThan(QT_MAJOR_VERSION, 4) { 
+greaterThan(QT_MAJOR_VERSION, 4) {
     QT += widgets
     win32:QT += axcontainer
 } else {
@@ -32,6 +32,7 @@ INCLUDEPATH += $$INC
 win32:!win32-g++{
     LIBS += -lversion -ladvapi32 -lole32
 }
+win32:RC_FILE = $$SRC/tianchi.rc
 
 HEADERS += \
     $$INC/Global.h \
@@ -50,6 +51,8 @@ HEADERS += \
     $$INC/Gui/DateEdit.h \
     $$INC/Gui/GuiUtils.h \
     $$INC/Gui/TreeWidgetHeaderSetupDialog.h \
+    $$INC/Network/DownloadHttp.h \
+    $$INC/Network/SingleInstance.h \
     $$INC/OS/OS.h
 
 SOURCES += \
@@ -67,6 +70,8 @@ SOURCES += \
     $$SRC/Gui/DateEdit.cpp \
     $$SRC/Gui/TreeWidgetHeaderSetupDialog.cpp \
     $$SRC/Gui/GuiUtils.cpp \
+    $$SRC/Network/DownloadHttp.cpp \
+    $$SRC/Network/SingleInstance.cpp \
     $$SRC/OS/OS.cpp
 
 FORMS += \
@@ -74,3 +79,4 @@ FORMS += \
 
 RESOURCES += \
     $$RES/tianchi.qrc
+

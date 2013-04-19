@@ -16,3 +16,4 @@ CONFIG += staticlib
 WORKDIR=$$PWD/..
 
 include($$WORKDIR/src/src.pri)
+
