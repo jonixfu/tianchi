@@ -36,7 +36,8 @@
 #include <QThread>
 
 
-TIANCHI_BEGIN_NAMESPACE
+namespace TIANCHI
+{
 
 /// @brief 操作模式的标识常量
 namespace OperMode
@@ -47,6 +48,8 @@ const int Delete = 4; ///< 删除
 };
 
 /// @brief 常用小功能综合函数集
+/// @author 圣域天子 Jonix@qtcn.org
+/// @date 2013-04-10
 class TIANCHI_API Utils
 {
 public:
@@ -69,18 +72,18 @@ public:
     static QString YYYY_MM_DD_HH_MM_SS();
     /// @brief 转换字符串为日期时间
     static QDateTime toDateTime(const QString& text);
+    /// @brief 转换数据为日期时间
+    static QDateTime toDateTime(double timeDouble);
 
     /// @brief 返回18位身位证的最后一位校验码
     static char getIDCardVerifyCode(const QByteArray& id);
 
     /// @brief 取编译日期和时间，调用处的代码必须重新编译
-    static QDateTime complieDateTime(const QString& complieDate, const QString& time);
+    static QDateTime complieDateTime(const QString& complieDate, const QString& complieTime);
 
-    /// @brief 从目录及子目录中检索出所有文件名
-    static QStringList searchFiles(const QString& path);
 };
 
-TIANCHI_END_NAMESPACE
+} // namespace TIANCHI
 
 
 #endif // TIANCHI_UTILS_H

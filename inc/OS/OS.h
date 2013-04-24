@@ -20,9 +20,12 @@
 
 #include <QString>
 
-TIANCHI_BEGIN_NAMESPACE
+namespace TIANCHI
+{
 
 /// @brief 与操作系统相关的操作类
+/// @author 圣域天子 Jonix@qtcn.org
+/// @date 2013-04-10
 class TIANCHI_API OS
 {
 public:
@@ -41,6 +44,6 @@ public:
     static bool login(const QString& Domain, const QString& UserID, const QString& Password);
 };
 
-TIANCHI_END_NAMESPACE
+} // namespace TIANCHI
 
 #endif // TIANCHI_OS_H

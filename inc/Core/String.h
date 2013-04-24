@@ -13,7 +13,6 @@
 //
 // ====================================================================================================================
 /// @file String.h 字符串功能增强与扩展
-// ====================================================================================================================
 #ifndef TIANCHI_STRING_H
 #define TIANCHI_STRING_H
 
@@ -22,9 +21,12 @@
 #include <QString>
 #include <QStringList>
 
-TIANCHI_BEGIN_NAMESPACE
+namespace TIANCHI
+{
 
 /// @brief 字符串功能增强与扩展
+/// @author 圣域天子 Jonix@qtcn.org
+/// @date 2013-04-16
 class TIANCHI_API String
 {
 public:
@@ -66,13 +68,36 @@ public:
 };
 
 /// @brief 字符串集功能增强与扩展
+/// @author 圣域天子 Jonix@qtcn.org
+/// @date 2013-04-16
 class TIANCHI_API StringList : public QStringList
 {
 public:
+    StringList();
+    /// @brief 装入一个文本文件的全部内容
+    /// @param [in] fileName 路径文件名
+    /// @return 操作成功
     bool loadFrom(const QString& fileName);
+    /// @brief 保存当前内容到一个文本文件中
+    /// @param [in] fileName 路径文件名
+    /// @return 操作成功
     bool saveTo(const QString& fileName);
+
+    /// @brief 返回文本文件的行结尾符
+    inline QString lineBreak() const
+    {
+        return m_lineBreak;
+    }
+    /// @brief 设置文本文件的行结尾符
+    inline void lineBreak(const QString& value)
+    {
+        m_lineBreak = value;
+    }
+
+private:
+    QString m_lineBreak;
 };
 
-TIANCHI_END_NAMESPACE
+} // namespace TIANCHI
 
 #endif // TIANCHI_STRING_H

@@ -4,6 +4,7 @@
 # Qt / Compiler / OS                        Compiled    Date        Names                   Description
 # ----------------------------------------------------------------------------------------------------------------------
 # Qt4.8.4-x86 / VC2010    / Win7
+# Qt4.8.4-x86 / VC2010    / Win8            Yes         2013.04.24  Jonix
 # Qt4.8.4-x86 / GCC 4.7.2 / OpenSuse 12.3
 # Qt5.0.1-x86 / VC2010    / Win8            Yes         2013.04.15  Jonix
 # Qt5.0.1-x86 / GCC 4.7.2 / OpenSuse 12.3

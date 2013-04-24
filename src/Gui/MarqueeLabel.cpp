@@ -12,33 +12,19 @@
 // 2013.04.18   XChinux     建立
 //
 // ==========================================================================
-/// @file MarqueeLabel.cpp 跑马灯Label,点击时自动打开网址
+/// @file MarqueeLabel.cpp 跑马灯Label, 点击时自动打开网址
 // ==========================================================================
 #include "Gui/MarqueeLabel.h"
 #include <QUrl>
-#include <QtConcurrent/QtConcurrentRun>
+#include <QtConcurrentRun>
 #include <QResizeEvent>
 #include <QDesktopServices>
-#include <QPropertyAnimation>
 
-TIANCHI_BEGIN_NAMESPACE
-
-QT_USE_NAMESPACE
-
-class MarqueeLabelPrivate
+namespace TIANCHI
 {
-    Q_DECLARE_PUBLIC(MarqueeLabel)
-public:
-    explicit MarqueeLabelPrivate(MarqueeLabel *qptr);
-    ~MarqueeLabelPrivate();
 
-    void _q_openLink(const QString &url);
-
-    QPropertyAnimation *animation;
-    MarqueeLabel *q_ptr;
-};
-
-MarqueeLabelPrivate::MarqueeLabelPrivate(MarqueeLabel *qptr) : q_ptr(qptr) 
+MarqueeLabelPrivate::MarqueeLabelPrivate(MarqueeLabel *qptr) 
+    : q_ptr(qptr)
 {
     animation = new QPropertyAnimation(q_ptr, "geometry", q_ptr);
     QObject::connect(q_ptr, SIGNAL(linkActivated(const QString &)),
@@ -63,7 +49,7 @@ MarqueeLabel::MarqueeLabel(QWidget * parent, Qt::WindowFlags f)
     setOpenExternalLinks(false);
 }
 
-MarqueeLabel::MarqueeLabel(const QString &text, QWidget *parent, 
+MarqueeLabel::MarqueeLabel(const QString &text, QWidget *parent,
         Qt::WindowFlags f )
     : QLabel(text, parent, f), d_ptr(new MarqueeLabelPrivate(this))
 {
@@ -128,6 +114,4 @@ void MarqueeLabel::setText(const QString &text)
     d->animation->start();
 }
 
-#include "moc_MarqueeLabel.cpp"
-
-TIANCHI_END_NAMESPACE
+} // namespace TIANCHI

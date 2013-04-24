@@ -1,6 +1,7 @@
 #include <Network/DownloadHttp.h>
 
-TIANCHI_BEGIN_NAMESPACE
+namespace TIANCHI
+{
 
 Download::Download(int index, QObject *parent)
     : QObject(parent), m_Index(index)
@@ -151,4 +152,4 @@ int main(int argc, char **argv)
 }
 */
 
-TIANCHI_END_NAMESPACE
+} // namespace TIANCHI

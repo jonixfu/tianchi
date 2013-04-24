@@ -20,7 +20,8 @@
 #include <Global.h>
 #include <QLabel>
 
-TIANCHI_BEGIN_NAMESPACE
+namespace TIANCHI
+{
 
 class ClickLabelPrivate;
 
@@ -30,10 +31,9 @@ class TIANCHI_API ClickLabel : public QLabel
     Q_OBJECT
 public:
     ClickLabel(QWidget *parent = 0, Qt::WindowFlags f = 0);
-    ClickLabel(const QString &text, QWidget *parent = 0, 
+    ClickLabel(const QString &text, QWidget *parent = 0,
             Qt::WindowFlags f = 0);
-    ~ClickLabel();
-
+    virtual ~ClickLabel();
 Q_SIGNALS:
     /// @brief 点击部件时发出clicked信号
     void clicked();
@@ -48,6 +48,6 @@ private:
     ClickLabelPrivate *d_ptr;
 };
 
-TIANCHI_END_NAMESPACE
+} // namespace TIANCHI
 
 #endif

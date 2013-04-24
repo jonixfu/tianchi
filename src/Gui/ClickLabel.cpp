@@ -18,7 +18,8 @@
 #include <QPoint>
 #include <QMouseEvent>
 
-TIANCHI_BEGIN_NAMESPACE
+namespace TIANCHI
+{
 
 class ClickLabelPrivate
 {
@@ -73,9 +74,9 @@ void ClickLabel::mouseReleaseEvent(QMouseEvent *e)
     {
         if (e->pos() == d->pos)
         {
-            emit clicked();
+            Q_EMIT clicked();
         }
     }
 }
 
-TIANCHI_END_NAMESPACE
+} // namespace TIANCHI

@@ -20,17 +20,20 @@
 #include <QDialog>
 #include <QTreeWidget>
 
-TIANCHI_BEGIN_NAMESPACE
+namespace TIANCHI
+{
 
 namespace Ui {
 class TreeWidgetHeaderSetupDialog;
 }
 
 /// @brief 设置 QTreeWidget 标题的对话框
+/// @author 圣域天子 Jonix@qtcn.org
+/// @date 2013-04-10
 class TIANCHI_API TreeWidgetHeaderSetupDialog : public QDialog
 {
     Q_OBJECT
-    
+
 public:
     explicit TreeWidgetHeaderSetupDialog(QWidget *parent = 0);
     ~TreeWidgetHeaderSetupDialog();
@@ -39,8 +42,8 @@ public:
     /// @param [in] view QTreeView 对象
     /// @param [in] max 最大设置的列数，超过部分将被忽略
     void setHeader(QTreeWidget* view, int max=-1);
-    
-private slots:
+
+private Q_SLOTS:
     void on_bnUpward_clicked();
     void on_bnDownawrd_clicked();
 
@@ -55,6 +58,6 @@ private:
     QTreeWidget* m_view;
 };
 
-TIANCHI_END_NAMESPACE
+} // namespace TIANCHI
 
 #endif // TIANCHI_DLGHEADERSETUP_H

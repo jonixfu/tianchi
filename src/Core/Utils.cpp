@@ -17,7 +17,8 @@
 #include <iostream>
 using namespace std;
 
-TIANCHI_BEGIN_NAMESPACE
+namespace TIANCHI
+{
 
 QHash<QString, QString> Utils::StringToMap(const QString& mapStrings)
 {
@@ -151,6 +152,18 @@ QDateTime Utils::toDateTime(const QString& text)
     return ret;
 }
 
+QDateTime Utils::toDateTime(double timeDouble)
+{
+    int    days    = int(timeDouble);
+    double seconds = timeDouble - days;
+
+    const qint64 OF_JULIAN_DAY = 2415019;
+    QDate date = QDate::fromJulianDay(OF_JULIAN_DAY + days);
+    QTime time(0, 0, 0, 0);
+    time = time.addSecs(seconds * 86400.0);
+    return QDateTime(date, time);
+}
+
 char Utils::getIDCardVerifyCode(const QByteArray& id)
 {
     char ret = '\0';
@@ -173,15 +186,13 @@ char Utils::getIDCardVerifyCode(const QByteArray& id)
     return ret;
 }
 
-
-
-QDateTime Utils::complieDateTime(const QString& complieDate, const QString& time)
+QDateTime Utils::complieDateTime(const QString& complieDate, const QString& complieTime)
 {
-    QString DateString = __DATE__;
+    QString DateString = complieDate;
     QString Year  = DateString.right(4);
     QString Month = DateString.left(3).toUpper();
     QString Day   = DateString.mid(4, 2);
-    QString TimeString = __TIME__;
+    QString TimeString = complieTime;
     QString Hour   = TimeString.left(2);
     QString Minute = TimeString.mid(3, 2);
     QString Second = TimeString.right(2);
@@ -200,29 +211,4 @@ QDateTime Utils::complieDateTime(const QString& complieDate, const QString& time
                      QTime(Hour.toInt(), Minute.toInt(), Second.toInt()));
 }
 
-QStringList Utils::searchFiles(const QString& path)
-{
-    QStringList ret;
-    // 这个函数可以执行任何任务，
-    // 这里只是简单地输出各个文件（夹）的名字
-    QDir dir(path);
-    QStringList list;
-    QStringList::Iterator iter;
-
-    QStringList list = dir.entryList(QDir::Dirs, QDir::Name);
-    for ( QStringList::Iterator it=list.begin();it!=list.end();it++ )
-    {
-        if ( "." != *it && ".." != *it )
-        {
-            ret.append(searchFiles(path + QDir::separator() + *it));
-        }
-    }
-    list = dir.entryList(QDir::Files, QDir::Name);
-    for ( QStringList::Iterator it=list.begin();it!=list.end();it++ )
-    {
-        ret.append(*it);
-    }
-    return ret;
-}
-
-TIANCHI_END_NAMESPACE
+} // namespace TIANCHI

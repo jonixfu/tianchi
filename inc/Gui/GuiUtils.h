@@ -22,11 +22,14 @@
 #include <QWidget>
 #include <QCursor>
 
-TIANCHI_BEGIN_NAMESPACE
+namespace TIANCHI
+{
 
 /// @brief 光标形态变化类的根类，一般不直接使用
 /// @see class CursorWait
 /// @see class CursorBusy
+/// @author 圣域天子 Jonix@qtcn.org
+/// @date 2013-04-15
 class TIANCHI_API CursorCustom
 {
 protected:
@@ -56,6 +59,8 @@ protected:
 /// } // 退出块时，wait 被释放，使光标自动恢复为原先的光标形态
 /// @endcode
 /// @see class CursorBusy
+/// @author 圣域天子 Jonix@qtcn.org
+/// @date 2013-04-15
 class TIANCHI_API CursorWait : public CursorCustom
 {
 public:
@@ -78,6 +83,8 @@ public:
 /// } // 退出块时，busy 被释放，使光标自动恢复为原先的光标形态
 /// @endcode
 /// @see class CursorBusy
+/// @author 圣域天子 Jonix@qtcn.org
+/// @date 2013-04-15
 class TIANCHI_API CursorBusy : public CursorCustom
 {
 public:
@@ -87,7 +94,7 @@ public:
     }
 };
 
-TIANCHI_END_NAMESPACE
+} // namespace TIANCHI
 
 #endif // QT_GUI_LIB
 

@@ -1,6 +1,7 @@
 #include "Network/SingleInstance.h"
 
-TIANCHI_BEGIN_NAMESPACE
+namespace TIANCHI
+{
 
 void SingleInstance::init(QObject* parent, QString instanceName)
 {
@@ -21,4 +22,4 @@ void SingleInstance::init(QObject* parent, QString instanceName)
     }
 }
 
-TIANCHI_END_NAMESPACE
+} // namespace TIANCHI

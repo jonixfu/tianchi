@@ -21,9 +21,12 @@
 
 #include <QString>
 
-TIANCHI_BEGIN_NAMESPACE
+namespace TIANCHI
+{
 
 /// @brief 简单的文本文件输出日志。
+/// @author 圣域天子 Jonix@qtcn.org
+/// @date 2013-04-10
 class TIANCHI_API LogTiny
 {
 public:
@@ -71,7 +74,7 @@ private:
     QString m_FileName;
 };
 
-TIANCHI_END_NAMESPACE
+} // namespace TIANCHI
 
 /// @brief 向日志输出代码所在文件和行号，用于运行时跟踪执行步骤。
 #define Log_Step TIANCHI_NAMESPACE::Log.write("<<STEP>>", __FILE__, __LINE__);

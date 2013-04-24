@@ -1,7 +1,8 @@
 #include "Gui/TreeWidgetHeaderSetupDialog.h"
 #include "ui_TreeWidgetHeaderSetupDialog.h"
 
-TIANCHI_BEGIN_NAMESPACE
+namespace TIANCHI
+{
 
 TreeWidgetHeaderSetupDialog::TreeWidgetHeaderSetupDialog(QWidget *parent) :
     QDialog(parent),
@@ -17,7 +18,7 @@ TreeWidgetHeaderSetupDialog::~TreeWidgetHeaderSetupDialog()
     delete ui;
 }
 
-void TreeWidgetHeaderSetupDialog::setHeader(QTreeWidget* view, int max)
+void TreeWidgetHeaderSetupDialog::setHeader(QTreeWidget* view, int)
 {
     m_view = view;
 
@@ -31,7 +32,7 @@ void TreeWidgetHeaderSetupDialog::setHeader(QTreeWidget* view, int max)
     }
 }
 
-void TreeWidgetHeaderSetupDialog::on_MasterView_itemClicked(QTreeWidgetItem *item, int column)
+void TreeWidgetHeaderSetupDialog::on_MasterView_itemClicked(QTreeWidgetItem* item, int)
 {
     int index = ui->MasterView->indexOfTopLevelItem(item);
     m_view->setColumnHidden(index, item->checkState(0) == Qt::Unchecked);
@@ -110,4 +111,4 @@ void TreeWidgetHeaderSetupDialog::on_bnRight_clicked()
     }
 }
 
-TIANCHI_END_NAMESPACE
+} // namespace TIANCHI

@@ -13,7 +13,6 @@
 //
 // ====================================================================================================================
 /// @file Json.h JSON 创建和解析类
-// ====================================================================================================================
 #ifndef TIANCHI_JSON_H
 #define TIANCHI_JSON_H
 
@@ -26,13 +25,22 @@
 #include <QString>
 #include <QStringList>
 
-TIANCHI_BEGIN_NAMESPACE
+namespace TIANCHI
+{
 
 /// @brief 兼容 Qt 4.x 的 JSON文生成和解析类
+/// @author 圣域天子 Jonix@qtcn.org
+/// @date 2013-04-10
 class TIANCHI_API JSONObject
 {
 public:
-    enum ValueTypeFlag { vtfObject=0, vtfString=1, vtfInt=2, vtfDouble=3, vtfBool=4, vtfDateTime=5, vtfNull=6, vtfArray=99 };
+    enum ValueTypeFlag
+    {
+        vtfObject = 0,
+        vtfString = 1,
+        vtfInt    = 2,
+        vtfDouble = 3,
+        vtfBool   = 4, vtfDateTime=5, vtfNull=6, vtfArray=99 };
 
     JSONObject(const QString& key="");
     virtual ~JSONObject();
@@ -115,12 +123,12 @@ public:
     void    clearChildren();
     void    clear();
 
-    virtual QString toString() const; // 鍙栧緱
+    virtual QString toString() const; // 取得
 
     bool    fromString(QString jsonText);
 };
-// =====================================================================================================================
 
-TIANCHI_END_NAMESPACE
+// =====================================================================================================================
+} // namespace TIANCHI
 
 #endif // TIANCHI_JSON_H

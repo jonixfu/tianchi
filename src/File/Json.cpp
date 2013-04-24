@@ -1,12 +1,9 @@
-// *********************************************************************************************************************
-// ---------------------------------------------------------------------------------------------------------------------
-// =====================================================================================================================
-
 #include "File/Json.h"
 
-TIANCHI_BEGIN_NAMESPACE
-
+namespace TIANCHI
+{
 // =====================================================================================================================
+
 JSONObject::JSONObject(const QString& key)
 {
     parent = NULL;
@@ -318,7 +315,7 @@ bool JSONObject::fromString(QString jsonText)
     return ptr != NULL;
 }
 
-const wchar_t* JSONObject::fromObject(const QString& Key, const wchar_t* ptr)
+const wchar_t* JSONObject::fromObject(const QString&, const wchar_t* ptr)
 {
     ptr = skip(ptr);
     if ( *ptr == L'{' )
@@ -476,5 +473,6 @@ const wchar_t* JSONObject::parseNumber(QString& Value, const wchar_t* ptr)
     }
     return ptr;
 }
+
 // =====================================================================================================================
-TIANCHI_END_NAMESPACE
+} // namespace TIANCHI

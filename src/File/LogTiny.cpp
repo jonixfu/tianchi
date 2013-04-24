@@ -7,7 +7,8 @@
 
 #include "File/LogTiny.h"
 
-TIANCHI_BEGIN_NAMESPACE
+namespace TIANCHI
+{
 
 ///**
 // * @brief Tianchi::Log 全局 Log4Qt 实例，可在应用程序中直接使用。
@@ -58,4 +59,4 @@ void LogTiny::write(const QString& S, const QString& SourceName, int SourceLine)
     }
 }
 
-TIANCHI_END_NAMESPACE
+} // namespace TIANCHI

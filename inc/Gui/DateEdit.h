@@ -22,16 +22,19 @@
 #include <QComboBox>
 #include <QCalendarWidget>
 
-TIANCHI_BEGIN_NAMESPACE
+namespace TIANCHI
+{
 
 /// @brief 可以输入或显示为空的日期选择控件
+/// @author 圣域天子 Jonix@qtcn.org
+/// @date 2013-04-10
 class TIANCHI_API DateEdit : public QComboBox
 {
     Q_OBJECT
 
     Q_PROPERTY(QDate date READ date WRITE setDate RESET unsetDate)
 
-private slots:
+private Q_SLOTS:
     void calendarClicked(QDate);
 
 private:
@@ -52,6 +55,6 @@ public:
     inline void setDate(QDateTime value) { setDate(value.date()); }
 };
 
-TIANCHI_END_NAMESPACE
+} // namespace TIANCHI
 
 #endif

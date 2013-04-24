@@ -7,7 +7,8 @@
 #endif
 
 
-TIANCHI_BEGIN_NAMESPACE
+namespace TIANCHI
+{
 
 QString OS::name()
 {
@@ -23,7 +24,7 @@ QString OS::name()
 QString OS::language()
 {
     QString ret;
-  #if defined(TC_OS_WIN32_CXX_MSC_BCB)
+  #if defined(Q_OS_WIN)
     LANGID  LangID = GetSystemDefaultLangID();
     wchar_t LanguageName[100];
     VerLanguageName(LangID, LanguageName, 100);
@@ -62,5 +63,5 @@ bool OS::login(const QString& Domain, const QString& UserID, const QString& Pass
     return ret;
 }
 
-TIANCHI_END_NAMESPACE
+} // namespace TIANCHI
 

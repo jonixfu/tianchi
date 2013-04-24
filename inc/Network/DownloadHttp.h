@@ -13,7 +13,6 @@
 //
 // ====================================================================================================================
 /// @file DownloadHttp.h HTTP 文件多线程下载器
-// ====================================================================================================================
 #ifndef TIANCHI_DOWNLOADHTTP_H
 #define TIANCHI_DOWNLOADHTTP_H
 
@@ -22,9 +21,13 @@
 #include <QtCore>
 #include <QtNetwork>
 
-TIANCHI_BEGIN_NAMESPACE
+namespace TIANCHI
+{
 
 /// @brief 用于下载文件（或文件的一部分）
+/// 注意：此类尚未进行严格测试
+/// @author 来自互联网
+/// @date 2013-04-19
 class TIANCHI_API Download : public QObject
 {
     Q_OBJECT
@@ -33,10 +36,10 @@ public:
     Download(int index, QObject *parent = 0);
     void StartDownload(const QUrl &url, QFile* file, qint64 startPoint=0, qint64 endPoint=-1);
 
-signals:
+Q_SIGNALS:
     void DownloadFinished();
 
-public slots:
+public Q_SLOTS:
     void FinishedSlot();
     void HttpReadyRead();
 
@@ -63,10 +66,10 @@ public:
     void StartFileDownload(const QString &url, int count);
     qint64 GetFileSize(QUrl url);
 
-signals:
+Q_SIGNALS:
     void FileDownloadFinished();
 
-private slots:
+private Q_SLOTS:
     void SubPartFinished();
 
 private:
@@ -77,6 +80,6 @@ private:
     QFile *m_File;
 };
 
-TIANCHI_END_NAMESPACE
+} // namespace TIANCHI
 
 #endif // TIANCHI_DOWNLOADHTTP_H

@@ -38,7 +38,7 @@
 /// {
 ///     QApplication app(argc, argv);
 ///     // 先为应用程序设置字符集
-///     QTextCodec*pCodec=QTextCodec::codecForName("GBK");
+///     QTextCodec* pCodec=QTextCodec::codecForName("GBK");
 ///     QTextCodec::setCodecForLocale(pCodec);
 ///
 ///     ...
@@ -51,6 +51,8 @@
 /// }
 /// @endcode
 /// @return 转换后的汉字字符串类型
+/// @author 圣域天子 Jonix@qtcn.org
+/// @date 2013-04-15
 inline QString QS(const char* s)
 {
     return QTextCodec::codecForLocale()->toUnicode(s);

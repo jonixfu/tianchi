@@ -22,8 +22,10 @@
 
 #include <QtGlobal>
 
-#define TIANCHI_VERSION 0x000002
+/// @brief 《天池共享源码库》的发布版本号
+#define TIANCHI_VERSION 0x000001
 
+/// @brief 类前缀的描述字
 #if defined(TIANCHI_EXPORT)
 #   define TIANCHI_API Q_DECL_EXPORT
 #elif defined(TIANCHI_IMPORT)
@@ -33,11 +35,10 @@
 #endif
 
 // 名字空间，如果名字空间有冲突修改 Tianchi 就可以
-#ifndef TIANCHI_NAMESPACE
+/// @namespace Tianchi 《天池共享源码库》统一类名字空间
+#ifndef TIANCHI
+/// @brief 《天池共享源码库》统一类名字空间
 #   define TIANCHI Tianchi
-#   define TIANCHI_NAMESPACE Tianchi
-#   define TIANCHI_BEGIN_NAMESPACE namespace TIANCHI_NAMESPACE {
-#   define TIANCHI_END_NAMESPACE } // namespace TIANCHI_NAMESPACE
 #endif
 
 #endif // TIANCHI_GLOBAL_H

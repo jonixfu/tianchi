@@ -1,8 +1,9 @@
 #include "Gui/GuiUtils.h"
 
 
-TIANCHI_BEGIN_NAMESPACE
+namespace TIANCHI
+{
 
 
-TIANCHI_END_NAMESPACE
+} // namespace TIANCHI
 

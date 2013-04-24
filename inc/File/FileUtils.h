@@ -21,9 +21,12 @@
 
 #include <QString>
 
-TIANCHI_BEGIN_NAMESPACE
+namespace TIANCHI
+{
 
 /// @brief 文件操作常用处理类
+/// @author 圣域天子 Jonix@qtcn.org
+/// @date 2013-04-15
 class TIANCHI_API FileUtils
 {
 public:
@@ -39,8 +42,11 @@ public:
     /// @param [in] exeFile 包含版本信息的文件名(.exe, .dll等)
     /// @return 版本信息(xxx.xxx.xxx.xxx)
     static QString fileVersion(const QString& exeFile);
+
+    /// @brief 从目录及子目录中检索出所有文件名
+    static QStringList searchFiles(const QString& path);
 };
 
-TIANCHI_END_NAMESPACE
+} // namespace TIANCHI
 
 #endif // TIANCHI_FILEUTILS_H
