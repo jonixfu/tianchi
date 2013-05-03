@@ -1,10 +1,7 @@
-#include "Core/Classes.h"
-#include "Core/Utils.h"
+#include "tianchi/Core/Classes.h"
+#include "tianchi/Core/Utils.h"
 
-namespace TIANCHI
-{
-
-Player::Player()
+TcPlayer::TcPlayer()
     : QObject()
 {
     m_loggedIn  = false;
@@ -13,7 +10,7 @@ Player::Player()
     m_noLoginTimer.start();
 }
 
-Player& Player::operator=(const Player & from)
+TcPlayer& TcPlayer::operator=(const TcPlayer & from)
 {
     if ( this != &from )
     {
@@ -33,7 +30,7 @@ Player& Player::operator=(const Player & from)
     return *this;
 }
 
-void Player::setLoggedIn(bool value)
+void TcPlayer::setLoggedIn(bool value)
 {
     m_loggedIn = value;
     m_loginTime = QDateTime::currentDateTime();
@@ -43,7 +40,7 @@ void Player::setLoggedIn(bool value)
     }
 }
 
-void Player::clear()
+void TcPlayer::clear()
 {
     m_userNo    = 0;
     m_userID    = "";
@@ -59,7 +56,7 @@ void Player::clear()
     m_noLoginTimer.restart();
 }
 
-int Player::authority(const QString& key) const
+int TcPlayer::authority(const QString& key) const
 {
     int ret  = 0;
     if ( m_userLevel >= AUTH_ADMIN )
@@ -73,9 +70,9 @@ int Player::authority(const QString& key) const
     return ret;
 }
 
-void Player::setAuthorityText(const QString& value)
+void TcPlayer::setAuthorityText(const QString& value)
 {
-    QHash<QString, QString> map = TIANCHI::Utils::StringToMap(value);
+    QHash<QString, QString> map = TcUtils::StringToMap(value);
 
     m_authority.clear();
 
@@ -90,9 +87,9 @@ void Player::setAuthorityText(const QString& value)
     }
 }
 
-void Player::setAuthorityText(const QStringList& value)
+void TcPlayer::setAuthorityText(const QStringList& value)
 {
-    QHash<QString, QString> map = TIANCHI::Utils::StringToMap(value);
+    QHash<QString, QString> map = TcUtils::StringToMap(value);
 
     m_authority.clear();
 
@@ -108,7 +105,7 @@ void Player::setAuthorityText(const QStringList& value)
 }
 
 // =====================================================================================================================
-bool CInvokeObject::invoke(QGenericArgument val0,
+bool TcInvokeObject::invoke(QGenericArgument val0,
                            QGenericArgument val1,
                            QGenericArgument val2,
                            QGenericArgument val3,
@@ -131,16 +128,16 @@ bool CInvokeObject::invoke(QGenericArgument val0,
 }
 
 // =====================================================================================================================
-void DBFields::addField(QByteArray& fieldBytes, const QString& name, const QVariant& value)
+void TcDBFields::addField(QByteArray& fieldBytes, const QString& name, const QVariant& value)
 {
     QByteArray bytes = value.toByteArray();
     fieldBytes.append(name).append('\0')
-            .append(TIANCHI::Utils::typeFrom(value.type())).append('\0')
+            .append(TcUtils::typeFrom(value.type())).append('\0')
             .append(QByteArray::number(bytes.length())).append('\0')
             .append(bytes);
 }
 
-QHash<QString, QByteArray> DBFields::getFields(const QByteArray& fieldBytes)
+QHash<QString, QByteArray> TcDBFields::getFields(const QByteArray& fieldBytes)
 {
     QHash<QString, QByteArray>  ret;
 
@@ -160,5 +157,3 @@ QHash<QString, QByteArray> DBFields::getFields(const QByteArray& fieldBytes)
     }
     return ret;
 }
-
-} // namespace TIANCHI

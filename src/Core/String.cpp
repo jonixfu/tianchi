@@ -1,18 +1,14 @@
-#include "Core/String.h"
+#include "tianchi/Core/String.h"
 
 #include <QTextCodec>
 #include <QFile>
 #include <QTextStream>
 
-
-namespace TIANCHI
-{
-
-String::String()
+TcString::TcString()
 {
 }
 
-QByteArray String::first(QByteArray& str, const QByteArray& split)
+QByteArray TcString::first(QByteArray& str, const QByteArray& split)
 {
     QByteArray ret;
     int endOf = str.indexOf(split);
@@ -28,7 +24,7 @@ QByteArray String::first(QByteArray& str, const QByteArray& split)
     return ret;
 }
 
-int String::find(const QStringList& ss, const QString& s)
+int TcString::find(const QStringList& ss, const QString& s)
 {
     int ret = -1;
     for( int i=0;i<ss.count();i++ )
@@ -42,7 +38,7 @@ int String::find(const QStringList& ss, const QString& s)
     return ret;
 }
 
-int String::findOf(const QStringList& list, const QString& key)
+int TcString::findOf(const QStringList& list, const QString& key)
 {
     int ret = -1;
     for( int i=0;i<list.count();i++ )
@@ -56,7 +52,7 @@ int String::findOf(const QStringList& list, const QString& key)
     return ret;
 }
 
-bool String::filter(const QString& text, const QStringList& filters)
+bool TcString::filter(const QString& text, const QStringList& filters)
 {
     bool ret = filters.count() <= 0;
     foreach(QString s, filters)
@@ -75,7 +71,7 @@ bool String::filter(const QString& text, const QStringList& filters)
 }
 
 /// 分解姓名（单、复姓、英文）
-int String::splitHumanName(QString full, QString& sur, QString& real, QString& english)
+int TcString::splitHumanName(QString full, QString& sur, QString& real, QString& english)
 {
     QString surs = QTextCodec::codecForLocale()->toUnicode(
                                "欧阳\n太史\n端木\n上官\n司马\n东方\n独孤\n南宫\n万俟\n"
@@ -134,14 +130,14 @@ int String::splitHumanName(QString full, QString& sur, QString& real, QString& e
     return ret;
 }
 
-QString String::getTextByIndex(const char* strings, int index)
+QString TcString::getTextByIndex(const char* strings, int index)
 {
     QStringList ss = QTextCodec::codecForLocale()->toUnicode(strings).split("\n", QString::SkipEmptyParts);
     return ss.at(index);
 }
 
 // class StringList
-StringList::StringList()
+TcStringList::TcStringList()
 {
     #if defined(Q_OS_WIN)
         m_lineBreak = "\r\n";
@@ -154,7 +150,7 @@ StringList::StringList()
     #endif
 }
 
-bool StringList::loadFrom(const QString& fileName)
+bool TcStringList::loadFrom(const QString& fileName)
 {
     bool ret = false;
     QFile f(fileName);
@@ -172,7 +168,7 @@ bool StringList::loadFrom(const QString& fileName)
     return ret;
 }
 
-bool StringList::saveTo(const QString& fileName)
+bool TcStringList::saveTo(const QString& fileName)
 {
     bool ret = false;
     QFile f(fileName);
@@ -187,5 +183,3 @@ bool StringList::saveTo(const QString& fileName)
     }
     return ret;
 }
-
-} // namespace TIANCHI

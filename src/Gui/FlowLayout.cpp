@@ -14,12 +14,9 @@
 // ==========================================================================
 /// @file FlowLayout.cpp 流式布局FlowLayout
 // ==========================================================================
-#include "Gui/FlowLayout.h"
+#include "tianchi/Gui/FlowLayout.h"
 #include <QStyle>
 #include <QWidget>
-
-namespace TIANCHI
-{
 
 class FlowLayoutPrivate
 {
@@ -46,8 +43,7 @@ FlowLayoutPrivate::~FlowLayoutPrivate()
 {
 }
 
-FlowLayout::FlowLayout(QWidget *parent, int margin, int hSpacing,
-        int vSpacing)
+FlowLayout::FlowLayout(QWidget *parent, int margin, int hSpacing, int vSpacing)
     : QLayout(parent), d_ptr(new FlowLayoutPrivate(this))
 {
     d_ptr->m_hSpace = hSpacing;
@@ -226,5 +222,3 @@ int FlowLayoutPrivate::smartSpacing(QStyle::PixelMetric pm) const
         return static_cast<QLayout *>(parent)->spacing();
     }
 }
-
-} // namespace TIANCHI

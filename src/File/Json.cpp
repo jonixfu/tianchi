@@ -1,10 +1,6 @@
-#include "File/Json.h"
+#include "tianchi/File/Json.h"
 
-namespace TIANCHI
-{
-// =====================================================================================================================
-
-JSONObject::JSONObject(const QString& key)
+TcJSONObject::TcJSONObject(const QString& key)
 {
     parent = NULL;
     m_index = 1;
@@ -14,18 +10,18 @@ JSONObject::JSONObject(const QString& key)
     setKey(key);
 }
 
-void JSONObject::init()
+void TcJSONObject::init()
 {
     m_key  = "";
     m_type = vtfObject;
 }
 
-JSONObject::~JSONObject()
+TcJSONObject::~TcJSONObject()
 {
     clear();
 }
 
-QString JSONObject::quote(const QString& Text)
+QString TcJSONObject::quote(const QString& Text)
 {
     QString ret;
     std::wstring ws = Text.toStdWString();
@@ -58,7 +54,7 @@ QString JSONObject::quote(const QString& Text)
     return ret;
 }
 
-QString JSONObject::dequote(const QString& text)
+QString TcJSONObject::dequote(const QString& text)
 {
     QString s = text;
     int idx;
@@ -70,17 +66,17 @@ QString JSONObject::dequote(const QString& text)
     return s;
 }
 
-QString JSONObject::key() const
+QString TcJSONObject::key() const
 {
     return m_key;
 }
 
-void JSONObject::setKey(const QString& value)
+void TcJSONObject::setKey(const QString& value)
 {
     m_key = value.trimmed();
 }
 
-QVariant JSONObject::value() const
+QVariant TcJSONObject::value() const
 {
     if ( m_list.count() >0 )
     {
@@ -91,10 +87,10 @@ QVariant JSONObject::value() const
     }
 }
 
-bool JSONObject::value(const QString& key, QVariant& v) const
+bool TcJSONObject::value(const QString& key, QVariant& v) const
 {
     bool ret = false;
-    QMap<QString, JSONObject*>::const_iterator child = m_list.find(key);
+    QMap<QString, TcJSONObject*>::const_iterator child = m_list.find(key);
 
     if ( child != m_list.constEnd() && child.key() == key )
     {
@@ -104,10 +100,10 @@ bool JSONObject::value(const QString& key, QVariant& v) const
     return ret;
 }
 
-QList<JSONObject*> JSONObject::children() const
+QList<TcJSONObject*> TcJSONObject::children() const
 {
-    QList<JSONObject*> ret;
-    for( QMap<QString, JSONObject*>::const_iterator it=m_list.begin();
+    QList<TcJSONObject*> ret;
+    for( QMap<QString, TcJSONObject*>::const_iterator it=m_list.begin();
          it!=m_list.end();
          it++ )
     {
@@ -116,12 +112,12 @@ QList<JSONObject*> JSONObject::children() const
     return ret;
 }
 
-QString JSONObject::jsonKey() const
+QString TcJSONObject::jsonKey() const
 {
     return "\"" + quote(m_key) + "\"";
 }
 
-QString JSONObject::jsonValue() const
+QString TcJSONObject::jsonValue() const
 {
     QString ret;
     switch(m_type)
@@ -149,36 +145,36 @@ QString JSONObject::jsonValue() const
     return ret;
 }
 
-JSONObject* JSONObject::addObject(const QString& key)
+TcJSONObject* TcJSONObject::addObject(const QString& key)
 {
-    JSONObject* ret = new JSONObject(key);
+    TcJSONObject* ret = new TcJSONObject(key);
     ret->parent = this;
     ret->setType(vtfObject);
     m_list[ret->key().isEmpty() ? QString::number(m_index++) : ret->key()] = ret;
     return ret;
 }
 
-JSONObject* JSONObject::addArray(const QString& key)
+TcJSONObject* TcJSONObject::addArray(const QString& key)
 {
-    JSONObject* ret = new JSONObject(key);
+    TcJSONObject* ret = new TcJSONObject(key);
     ret->parent = this;
     ret->setType(vtfArray);
     m_list[ret->key().isEmpty() ? QString::number(m_index++) : ret->key()] = ret;
     return ret;
 }
 
-JSONObject* JSONObject::addNull(const QString& key)
+TcJSONObject* TcJSONObject::addNull(const QString& key)
 {
-    JSONObject* ret = new JSONObject(key);
+    TcJSONObject* ret = new TcJSONObject(key);
     ret->parent = this;
     ret->setType(vtfNull);
     m_list[ret->key().isEmpty() ? QString::number(m_index++) : ret->key()] = ret;
     return ret;
 }
 
-JSONObject* JSONObject::add(const QString& key, const QString& value)
+TcJSONObject* TcJSONObject::add(const QString& key, const QString& value)
 {
-    JSONObject* ret = new JSONObject(key);
+    TcJSONObject* ret = new TcJSONObject(key);
     ret->parent = this;
     ret->setType(vtfString);
     ret->m_value = value;
@@ -186,9 +182,9 @@ JSONObject* JSONObject::add(const QString& key, const QString& value)
     return ret;
 }
 
-JSONObject* JSONObject::add(const QString& key, int value)
+TcJSONObject* TcJSONObject::add(const QString& key, int value)
 {
-    JSONObject* ret = new JSONObject(key);
+    TcJSONObject* ret = new TcJSONObject(key);
     ret->parent = this;
     ret->setType(vtfInt);
     ret->m_value = value;
@@ -196,9 +192,9 @@ JSONObject* JSONObject::add(const QString& key, int value)
     return ret;
 }
 
-JSONObject* JSONObject::add(const QString& key, double value)
+TcJSONObject* TcJSONObject::add(const QString& key, double value)
 {
-    JSONObject* ret = new JSONObject(key);
+    TcJSONObject* ret = new TcJSONObject(key);
     ret->parent = this;
     ret->setType(vtfDouble);
     ret->m_value = value;
@@ -206,9 +202,9 @@ JSONObject* JSONObject::add(const QString& key, double value)
     return ret;
 }
 
-JSONObject* JSONObject::add(const QString& key, bool value)
+TcJSONObject* TcJSONObject::add(const QString& key, bool value)
 {
-    JSONObject* ret = new JSONObject(key);
+    TcJSONObject* ret = new TcJSONObject(key);
     ret->parent = this;
     ret->setType(vtfBool);
     ret->m_value = value;
@@ -216,9 +212,9 @@ JSONObject* JSONObject::add(const QString& key, bool value)
     return ret;
 }
 
-JSONObject* JSONObject::add(const QString& key, QDateTime value)
+TcJSONObject* TcJSONObject::add(const QString& key, QDateTime value)
 {
-    JSONObject* ret = new JSONObject(key);
+    TcJSONObject* ret = new TcJSONObject(key);
     ret->parent = this;
     ret->setType(vtfDateTime);
     ret->m_value = value;
@@ -226,9 +222,9 @@ JSONObject* JSONObject::add(const QString& key, QDateTime value)
     return ret;
 }
 
-void JSONObject::deleteChildren(const QString& key)
+void TcJSONObject::deleteChildren(const QString& key)
 {
-    JSONObject* ret = m_list.value(key);
+    TcJSONObject* ret = m_list.value(key);
     m_list.remove(key);
     if ( ret != NULL )
     {
@@ -236,9 +232,9 @@ void JSONObject::deleteChildren(const QString& key)
     }
 }
 
-void JSONObject::clearChildren()
+void TcJSONObject::clearChildren()
 {
-    QMap<QString, JSONObject*>::iterator it;
+    QMap<QString, TcJSONObject*>::iterator it;
     while(m_list.count()>0)
     {
         it = m_list.begin();
@@ -247,22 +243,22 @@ void JSONObject::clearChildren()
     }
 }
 
-void JSONObject::clear()
+void TcJSONObject::clear()
 {
     clearChildren();
     init();
 }
 
-QString JSONObject::toString() const
+QString TcJSONObject::toString() const
 {
     QString values;
     if ( m_list.count() >0 )
     {
-        for( QMap<QString, JSONObject*>::const_iterator it=m_list.begin();
+        for( QMap<QString, TcJSONObject*>::const_iterator it=m_list.begin();
              it!=m_list.end();
              it++ )
         {
-            JSONObject* obj = it.value();
+            TcJSONObject* obj = it.value();
 
             values += "," + obj->toString();
         }
@@ -290,7 +286,7 @@ QString JSONObject::toString() const
     return parent != NULL && parent->type() != vtfArray && ! key().isEmpty() ? jsonKey() + ":" + values : values;
 }
 
-bool JSONObject::fromString(QString jsonText)
+bool TcJSONObject::fromString(QString jsonText)
 {
     clear();
 
@@ -315,7 +311,7 @@ bool JSONObject::fromString(QString jsonText)
     return ptr != NULL;
 }
 
-const wchar_t* JSONObject::fromObject(const QString&, const wchar_t* ptr)
+const wchar_t* TcJSONObject::fromObject(const QString&, const wchar_t* ptr)
 {
     ptr = skip(ptr);
     if ( *ptr == L'{' )
@@ -344,7 +340,7 @@ const wchar_t* JSONObject::fromObject(const QString&, const wchar_t* ptr)
     return ptr;
 }
 
-const wchar_t* JSONObject::fromArray(const wchar_t* ptr)
+const wchar_t* TcJSONObject::fromArray(const wchar_t* ptr)
 {
 
     ptr = skip(ptr);
@@ -367,7 +363,7 @@ const wchar_t* JSONObject::fromArray(const wchar_t* ptr)
     return ptr;
 }
 
-const wchar_t* JSONObject::parseKey(QString& Value, const wchar_t* ptr)
+const wchar_t* TcJSONObject::parseKey(QString& Value, const wchar_t* ptr)
 {
     Value = "";
     ptr = skip(ptr);
@@ -408,7 +404,7 @@ const wchar_t* JSONObject::parseKey(QString& Value, const wchar_t* ptr)
     return ptr;
 }
 
-const wchar_t* JSONObject::parseValue(QString Key, const wchar_t* ptr)
+const wchar_t* TcJSONObject::parseValue(QString Key, const wchar_t* ptr)
 {
     ptr = skip(ptr);
     if ( *ptr )
@@ -421,12 +417,12 @@ const wchar_t* JSONObject::parseValue(QString Key, const wchar_t* ptr)
         }else
         if ( *ptr==L'{' )
         {
-            JSONObject* child = addObject(Key);
+            TcJSONObject* child = addObject(Key);
             ptr = skip(child->fromObject(Key, ptr));
         }else
         if ( *ptr==L'[' )
         {
-            JSONObject* child = addArray(Key);
+            TcJSONObject* child = addArray(Key);
             ptr = skip(child->fromArray(ptr));
         }else
         if ( ptr && *ptr
@@ -461,7 +457,7 @@ const wchar_t* JSONObject::parseValue(QString Key, const wchar_t* ptr)
     return ptr;
 }
 
-const wchar_t* JSONObject::parseNumber(QString& Value, const wchar_t* ptr)
+const wchar_t* TcJSONObject::parseNumber(QString& Value, const wchar_t* ptr)
 {
     Value = "";
     ptr = skip(ptr);
@@ -473,6 +469,3 @@ const wchar_t* JSONObject::parseNumber(QString& Value, const wchar_t* ptr)
     }
     return ptr;
 }
-
-// =====================================================================================================================
-} // namespace TIANCHI

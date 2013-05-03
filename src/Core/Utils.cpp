@@ -1,4 +1,4 @@
-#include "Core/Utils.h"
+#include "tianchi/Core/Utils.h"
 
 
 #include <QTextCodec>
@@ -17,17 +17,14 @@
 #include <iostream>
 using namespace std;
 
-namespace TIANCHI
-{
-
-QHash<QString, QString> Utils::StringToMap(const QString& mapStrings)
+QHash<QString, QString> TcUtils::StringToMap(const QString& mapStrings)
 {
     QStringList strings = mapStrings.split("\n", QString::SkipEmptyParts);
 
     return StringToMap(strings);
 }
 
-QHash<QString, QString> Utils::StringToMap(const QStringList& mapStrings)
+QHash<QString, QString> TcUtils::StringToMap(const QStringList& mapStrings)
 {
     QHash<QString, QString> ret;
 
@@ -49,7 +46,7 @@ QHash<QString, QString> Utils::StringToMap(const QStringList& mapStrings)
     return ret;
 }
 
-char Utils::typeFrom(QVariant::Type type)
+char TcUtils::typeFrom(QVariant::Type type)
 {
     char c = '\0';
     if ( type == QVariant::Int
@@ -89,17 +86,17 @@ char Utils::typeFrom(QVariant::Type type)
     return c;
 }
 
-QString Utils::YYYY_MM_DD_HH_MM_SS_ZZZ()
+QString TcUtils::YYYY_MM_DD_HH_MM_SS_ZZZ()
 {
     return QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss.zzz");
 }
 
-QString Utils::YYYY_MM_DD_HH_MM_SS()
+QString TcUtils::YYYY_MM_DD_HH_MM_SS()
 {
     return QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss");
 }
 
-QDateTime Utils::toDateTime(const QString& text)
+QDateTime TcUtils::toDateTime(const QString& text)
 {
     QDateTime ret = QDateTime();
     switch(text.length())
@@ -152,19 +149,19 @@ QDateTime Utils::toDateTime(const QString& text)
     return ret;
 }
 
-QDateTime Utils::toDateTime(double timeDouble)
+QDateTime TcUtils::toDateTime(double timeDouble)
 {
     int    days    = int(timeDouble);
     double seconds = timeDouble - days;
 
-    const qint64 OF_JULIAN_DAY = 2415019;
-    QDate date = QDate::fromJulianDay(OF_JULIAN_DAY + days);
+    //const qint64 OF_JULIAN_DAY = 2415019;
+    QDate date = QDate::fromJulianDay(JULIAN_DAY + days);
     QTime time(0, 0, 0, 0);
     time = time.addSecs(seconds * 86400.0);
     return QDateTime(date, time);
 }
 
-char Utils::getIDCardVerifyCode(const QByteArray& id)
+char TcUtils::getIDCardVerifyCode(const QByteArray& id)
 {
     char ret = '\0';
     if ( id.length() >= 17 )
@@ -186,7 +183,7 @@ char Utils::getIDCardVerifyCode(const QByteArray& id)
     return ret;
 }
 
-QDateTime Utils::complieDateTime(const QString& complieDate, const QString& complieTime)
+QDateTime TcUtils::complieDateTime(const QString& complieDate, const QString& complieTime)
 {
     QString DateString = complieDate;
     QString Year  = DateString.right(4);
@@ -211,4 +208,3 @@ QDateTime Utils::complieDateTime(const QString& complieDate, const QString& comp
                      QTime(Hour.toInt(), Minute.toInt(), Second.toInt()));
 }
 
-} // namespace TIANCHI

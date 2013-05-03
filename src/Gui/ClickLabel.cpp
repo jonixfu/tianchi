@@ -14,62 +14,59 @@
 // ==========================================================================
 /// @file ClickLabel.h 可发出clicked信号的Label部件
 // ==========================================================================
-#include <Gui/ClickLabel.h>
+#include "tianchi/Gui/ClickLabel.h"
 #include <QPoint>
 #include <QMouseEvent>
 
-namespace TIANCHI
+class TcClickLabelPrivate
 {
-
-class ClickLabelPrivate
-{
-    Q_DECLARE_PUBLIC(ClickLabel)
+    Q_DECLARE_PUBLIC(TcClickLabel)
 public:
-    explicit ClickLabelPrivate(ClickLabel *qptr);
-    ~ClickLabelPrivate();
+    explicit TcClickLabelPrivate(TcClickLabel *qptr);
+    ~TcClickLabelPrivate();
     QPoint pos;
-    ClickLabel *q_ptr;
+    TcClickLabel *q_ptr;
 };
 
-ClickLabelPrivate::ClickLabelPrivate(ClickLabel *qptr) : q_ptr(qptr)
+TcClickLabelPrivate::TcClickLabelPrivate(TcClickLabel *qptr) : q_ptr(qptr)
 {
 }
 
-ClickLabelPrivate::~ClickLabelPrivate()
+TcClickLabelPrivate::~TcClickLabelPrivate()
 {
 }
 
-ClickLabel::ClickLabel(QWidget *parent, Qt::WindowFlags f)
-    : QLabel(parent, f), d_ptr(new ClickLabelPrivate(this))
+TcClickLabel::TcClickLabel(QWidget *parent, Qt::WindowFlags f)
+    : QLabel(parent, f), d_ptr(new TcClickLabelPrivate(this))
 {
 }
 
-ClickLabel::ClickLabel(const QString &text, QWidget *parent, Qt::WindowFlags f)
-    : QLabel(text, parent, f), d_ptr(new ClickLabelPrivate(this))
+TcClickLabel::TcClickLabel(const QString &text, QWidget *parent, Qt::WindowFlags f)
+    : QLabel(text, parent, f), d_ptr(new TcClickLabelPrivate(this))
 {
 }
 
-ClickLabel::~ClickLabel()
+TcClickLabel::~TcClickLabel()
 {
     delete d_ptr;
 }
 
-void ClickLabel::mousePressEvent(QMouseEvent *e)
+void TcClickLabel::mousePressEvent(QMouseEvent *e)
 {
     QLabel::mousePressEvent(e);
 
-    Q_D(ClickLabel);
+    Q_D(TcClickLabel);
     if (e->button() == Qt::LeftButton)
     {
         d->pos = e->pos();
     }
 }
 
-void ClickLabel::mouseReleaseEvent(QMouseEvent *e)
+void TcClickLabel::mouseReleaseEvent(QMouseEvent *e)
 {
     QLabel::mouseReleaseEvent(e);
 
-    Q_D(ClickLabel);
+    Q_D(TcClickLabel);
     if (e->button() == Qt::LeftButton)
     {
         if (e->pos() == d->pos)
@@ -78,5 +75,3 @@ void ClickLabel::mouseReleaseEvent(QMouseEvent *e)
         }
     }
 }
-
-} // namespace TIANCHI

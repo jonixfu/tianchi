@@ -1,19 +1,16 @@
-#include "File/Directory.h"
+#include "tianchi/File/Directory.h"
 
 #include <QQueue>
 #include <QFile>
 #include <QDir>
 
-namespace TIANCHI
-{
-
-Directory::Directory(QObject *parent)
+TcDirectory::TcDirectory(QObject *parent)
     : QObject(parent)
     , m_copyFileCount(0)
 {
 }
 
-QStringList Directory::findFiles(const QString &path, const QStringList &nameFilters)
+QStringList TcDirectory::findFiles(const QString &path, const QStringList &nameFilters)
 {
 	QStringList files;
 
@@ -25,7 +22,7 @@ QStringList Directory::findFiles(const QString &path, const QStringList &nameFil
 	return files;
 }
 
-int Directory::copyDirectories(const QString &fromPath, const QString &toPath,
+int TcDirectory::copyDirectories(const QString &fromPath, const QString &toPath,
                                const QStringList &nameFilters, bool overWrite)
 {
 	resetCopyFileCount();
@@ -39,7 +36,7 @@ int Directory::copyDirectories(const QString &fromPath, const QString &toPath,
     return m_copyFileCount;
 }
 
-int Directory::copyFiles(const QStringList &files, const QString &toPath, bool overWrite)
+int TcDirectory::copyFiles(const QStringList &files, const QString &toPath, bool overWrite)
 {
     int size = files.size();
     int count = 0;
@@ -70,12 +67,12 @@ int Directory::copyFiles(const QStringList &files, const QString &toPath, bool o
     return count;
 }
 
-void Directory::resetCopyFileCount()
+void TcDirectory::resetCopyFileCount()
 {
     m_copyFileCount = 0;
 }
 
-void Directory::doDirTree(const QString &fromPath, const QString &toPath,
+void TcDirectory::doDirTree(const QString &fromPath, const QString &toPath,
                           const QStringList &nameFilters, bool overWrite,
                           QStringList &findFiles, bool isFind)
 {
@@ -121,7 +118,7 @@ void Directory::doDirTree(const QString &fromPath, const QString &toPath,
 	}
 }
 
-QString Directory::formatPath(const QString &path)
+QString TcDirectory::formatPath(const QString &path)
 {
     QString new_path = path;
     QString last_char = path[path.size() - 1];
@@ -132,5 +129,3 @@ QString Directory::formatPath(const QString &path)
     }
     return new_path;
 }
-
-} // namespace TIANCHI

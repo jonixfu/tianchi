@@ -1,3 +1,5 @@
+#include "tianchi/File/LogTiny.h"
+
 #include <QCoreApplication>
 #include <QDir>
 #include <QFile>
@@ -5,28 +7,22 @@
 #include <QDateTime>
 #include <QTextStream>
 
-#include "File/LogTiny.h"
-
-namespace TIANCHI
-{
-
 ///**
-// * @brief Tianchi::Log 全局 Log4Qt 实例，可在应用程序中直接使用。
+// * @brief TcLog 全局 Log for Qt 实例，可在应用程序中直接使用。
 // */
-//Log4Qt Log;
 
-void LogTiny::setAppFile(const QString& AppFile)
+void TcLog::setAppFile(const QString& AppFile)
 {
     QFileInfo fi(AppFile);
     m_FileName = fi.absolutePath() + QDir::separator() + fi.baseName() + ".log";
 }
 
-void LogTiny::setLogFile(const QString& LogFile)
+void TcLog::setLogFile(const QString& LogFile)
 {
     m_FileName = LogFile;
 }
 
-void LogTiny::write(const QString& S, const QString& SourceName, int SourceLine)
+void TcLog::write(const QString& S, const QString& SourceName, int SourceLine)
 {
     if ( ! m_FileName.isEmpty() )
     {
@@ -58,5 +54,3 @@ void LogTiny::write(const QString& S, const QString& SourceName, int SourceLine)
         }
     }
 }
-
-} // namespace TIANCHI

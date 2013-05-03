@@ -1,13 +1,10 @@
-#include "Gui/DateEdit.h"
+#include "tianchi/Gui/DateEdit.h"
 
-#include "Core/Utils.h"
+#include "tianchi/Core/Utils.h"
 
 #include <QMouseEvent>
 
-namespace TIANCHI
-{
-
-DateEdit::DateEdit(QWidget *parent)
+TcDateEdit::TcDateEdit(QWidget *parent)
     : QComboBox(parent)
 {
     setEditable(true);
@@ -23,17 +20,17 @@ DateEdit::DateEdit(QWidget *parent)
     connect(m_calendar, SIGNAL(clicked(QDate)), this, SLOT(calendarClicked(QDate)));
 }
 
-DateEdit::~DateEdit()
+TcDateEdit::~TcDateEdit()
 {
     delete m_calendar;
 }
 
-void DateEdit::focusInEvent(QFocusEvent *e)
+void TcDateEdit::focusInEvent(QFocusEvent *e)
 {
     //屏蔽基类事件
 }
 
-void DateEdit::mousePressEvent(QMouseEvent *e)
+void TcDateEdit::mousePressEvent(QMouseEvent *e)
 {
     //获取鼠标当前坐标及全局坐标
     int x = e->x();
@@ -50,7 +47,7 @@ void DateEdit::mousePressEvent(QMouseEvent *e)
     m_calendar->show();
 }
 
-void DateEdit::calendarClicked(QDate _date)
+void TcDateEdit::calendarClicked(QDate _date)
 {
     //日历的单击信号处理函数
 
@@ -68,20 +65,17 @@ void DateEdit::calendarClicked(QDate _date)
     m_calendar->hide();
 }
 
-QDate DateEdit::date() const
+QDate TcDateEdit::date() const
 {
-    return Utils::toDateTime(currentText().trimmed()).date();
+    return TcUtils::toDateTime(currentText().trimmed()).date();
 }
 
-void DateEdit::setDate(QDate value)
+void TcDateEdit::setDate(QDate value)
 {
     setEditText(value.year() > 1900 ? value.toString("yyyy-MM-dd") : "");
 }
 
-void DateEdit::unsetDate()
+void TcDateEdit::unsetDate()
 {
     setEditText("");
 }
-
-} // namespace TIANCHI
-

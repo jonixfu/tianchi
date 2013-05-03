@@ -4,7 +4,7 @@
 // 版权所有 (C) 天池共享源码库开发组
 // 授权协议：请阅读天池共享源码库附带的授权协议
 // **************************************************************************
-// 文档说明：可发出clicked信号的Label部件
+// 文档说明：跑马灯Label, 点击时自动打开网址
 // ==========================================================================
 // 开发日志：
 // 日期         人员        说明
@@ -14,16 +14,16 @@
 // ==========================================================================
 /// @file MarqueeLabel.cpp 跑马灯Label, 点击时自动打开网址
 // ==========================================================================
-#include "Gui/MarqueeLabel.h"
+#include "tianchi/Gui/MarqueeLabel.h"
+
 #include <QUrl>
 #include <QtConcurrentRun>
 #include <QResizeEvent>
 #include <QDesktopServices>
 
-namespace TIANCHI
-{
 
-MarqueeLabelPrivate::MarqueeLabelPrivate(MarqueeLabel *qptr) 
+
+TcMarqueeLabelPrivate::TcMarqueeLabelPrivate(TcMarqueeLabel *qptr)
     : q_ptr(qptr)
 {
     animation = new QPropertyAnimation(q_ptr, "geometry", q_ptr);
@@ -32,56 +32,56 @@ MarqueeLabelPrivate::MarqueeLabelPrivate(MarqueeLabel *qptr)
 }
 
 
-MarqueeLabelPrivate::~MarqueeLabelPrivate()
+TcMarqueeLabelPrivate::~TcMarqueeLabelPrivate()
 {
     delete animation;
 }
 
 
-void MarqueeLabelPrivate::_q_openLink(const QString &url)
+void TcMarqueeLabelPrivate::_q_openLink(const QString &url)
 {
     QtConcurrent::run(QDesktopServices::openUrl, QUrl(url));
 }
 
-MarqueeLabel::MarqueeLabel(QWidget * parent, Qt::WindowFlags f)
-    : QLabel(parent, f), d_ptr(new MarqueeLabelPrivate(this))
+TcMarqueeLabel::TcMarqueeLabel(QWidget * parent, Qt::WindowFlags f)
+    : QLabel(parent, f), d_ptr(new TcMarqueeLabelPrivate(this))
 {
     setOpenExternalLinks(false);
 }
 
-MarqueeLabel::MarqueeLabel(const QString &text, QWidget *parent,
+TcMarqueeLabel::TcMarqueeLabel(const QString &text, QWidget *parent,
         Qt::WindowFlags f )
-    : QLabel(text, parent, f), d_ptr(new MarqueeLabelPrivate(this))
+    : QLabel(text, parent, f), d_ptr(new TcMarqueeLabelPrivate(this))
 {
     setOpenExternalLinks(false);
 }
 
 
-MarqueeLabel::~MarqueeLabel()
+TcMarqueeLabel::~TcMarqueeLabel()
 {
     delete d_ptr;
 }
 
-void MarqueeLabel::leaveEvent(QEvent *event)
+void TcMarqueeLabel::leaveEvent(QEvent *event)
 {
-    Q_D(MarqueeLabel);
+    Q_D(TcMarqueeLabel);
     d->animation->resume();
 
     QLabel::leaveEvent(event);
 }
 
-void MarqueeLabel::enterEvent(QEvent *event)
+void TcMarqueeLabel::enterEvent(QEvent *event)
 {
-    Q_D(MarqueeLabel);
+    Q_D(TcMarqueeLabel);
     d->animation->pause();
     QLabel::enterEvent(event);
 }
 
-void MarqueeLabel::resizeEvent(QResizeEvent *event)
+void TcMarqueeLabel::resizeEvent(QResizeEvent *event)
 {
     QLabel::resizeEvent(event);
 
-    Q_D(MarqueeLabel);
+    Q_D(TcMarqueeLabel);
     disconnect(d->animation, SIGNAL(finished()), d->animation, SLOT(start()));
     d->animation->stop();
 
@@ -97,9 +97,9 @@ void MarqueeLabel::resizeEvent(QResizeEvent *event)
 }
 
 
-void MarqueeLabel::setText(const QString &text)
+void TcMarqueeLabel::setText(const QString &text)
 {
-    Q_D(MarqueeLabel);
+    Q_D(TcMarqueeLabel);
     disconnect(d->animation, SIGNAL(finished()), d->animation, SLOT(start()));
     d->animation->stop();
     QLabel::setText(text);
@@ -113,5 +113,3 @@ void MarqueeLabel::setText(const QString &text)
     d->animation->setEndValue(QRect(-iWidth, 0, iWidth, iHeight));
     d->animation->start();
 }
-
-} // namespace TIANCHI

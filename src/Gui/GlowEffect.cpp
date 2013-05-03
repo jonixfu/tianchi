@@ -15,7 +15,7 @@
 // =====================================================================================================================
 /// @file GlowEffect.cpp 可发光的QGraphicsEffect
 
-#include "Gui/GlowEffect.h"
+#include "tianchi/Gui/GlowEffect.h"
 #include <QPainter>
 #include <QPixmap>
 
@@ -24,9 +24,6 @@ QT_BEGIN_NAMESPACE
 extern Q_DECL_IMPORT void qt_blurImage(QImage &blurImage, qreal radius,
         bool quality, int transposed = 0);
 QT_END_NAMESPACE
-
-namespace TIANCHI
-{
 
 class GlowEffectPrivate
 {
@@ -113,5 +110,3 @@ void GlowEffect::sourceChanged(ChangeFlags flags)
     updateBoundingRect();
     update();
 }
-
-} // namespace TIANCHI

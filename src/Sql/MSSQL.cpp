@@ -1,17 +1,14 @@
-#include "Sql/MSSQL.h"
+#include "tianchi/Sql/MSSQL.h"
+
 #include <QSettings>
 #include <QStringListIterator>
 #include <QtAlgorithms>
 
-namespace TIANCHI
-{
-
-QStringList MSSQL::availableODBCDrivers()
+QStringList TcMSSQL::availableODBCDrivers()
 {
     QStringList slDrivers;
 #ifdef Q_OS_WIN
-    QSettings  sts("HKEY_LOCAL_MACHINE\\SOFTWARE\\ODBC\\ODBCINST.INI"
-            "\\ODBC Drivers", QSettings::NativeFormat);
+    QSettings  sts("HKEY_LOCAL_MACHINE\\SOFTWARE\\ODBC\\ODBCINST.INI\\ODBC Drivers", QSettings::NativeFormat);
     QStringList slKeys = sts.allKeys();
 
     QStringList slKeys2;
@@ -24,8 +21,7 @@ QStringList MSSQL::availableODBCDrivers()
         QString strV = it.next();
         if (sts.value(strV).toString() == "Installed")
         {
-            QSettings sts2("HKEY_LOCAL_MACHINE\\SOFTWARE\\ODBC\\ODBCINST.INI\\"
-                + strV, QSettings::NativeFormat);
+            QSettings sts2("HKEY_LOCAL_MACHINE\\SOFTWARE\\ODBC\\ODBCINST.INI\\" + strV, QSettings::NativeFormat);
             strV.prepend(sts2.value("DriverODBCVer").toString() + "/");
             slDrivers << strV;
         }
@@ -35,4 +31,3 @@ QStringList MSSQL::availableODBCDrivers()
     return slDrivers;
 }
 
-} // namespace TIANCHI

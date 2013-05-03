@@ -1,13 +1,10 @@
-#include "Chinese/Chinese.h"
+#include "tianchi/Chinese/Chinese.h"
 
 #include <QString>
 
 #if defined(Q_OS_WIN)
 #include "msime.h"
 #endif
-
-namespace TIANCHI
-{
 
 #if defined(Q_OS_WIN)
 // ---------------------------------------------------------------------------------------------------------------------
@@ -122,7 +119,7 @@ void IMEEngine::UnsetIMEEngine(void)
 // ---------------------------------------------------------------------------------------------------------------------
 #endif
 
-QString Chinese::firstPinyins(const QString& HzString)
+QString TcChinese::firstPinyins(const QString& HzString)
 {
     QString ret;
     foreach(QChar c, HzString)
@@ -137,7 +134,7 @@ QString Chinese::firstPinyins(const QString& HzString)
     return ret;
 }
 
-QString Chinese::toChars(const QString& Str, bool Tonality)
+QString TcChinese::toChars(const QString& Str, bool Tonality)
 {
     QString ret = "";
     for( int i=0;i<Str.length();i++ )
@@ -154,7 +151,7 @@ QString Chinese::toChars(const QString& Str, bool Tonality)
     return ret;
 }
 
-QString Chinese::toPinyin(const QString& Str, bool Tonality)
+QString TcChinese::toPinyin(const QString& Str, bool Tonality)
 {
     QString ret;
 #ifdef Q_OS_WIN
@@ -185,7 +182,5 @@ QString Chinese::toPinyin(const QString& Str, bool Tonality)
 #endif
     return ret;
 }
-
-} // namespace TIANCHI
 
 

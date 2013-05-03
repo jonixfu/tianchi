@@ -1,4 +1,4 @@
-#include "OS/OS.h"
+#include "tianchi/OS/OS.h"
 
 #include <QSettings>
 
@@ -6,11 +6,7 @@
   #include <windows.h>
 #endif
 
-
-namespace TIANCHI
-{
-
-QString OS::name()
+QString TcOS::name()
 {
     QString ret;
   #if defined(Q_OS_WIN)
@@ -21,7 +17,7 @@ QString OS::name()
     return ret;
 }
 
-QString OS::language()
+QString TcOS::language()
 {
     QString ret;
   #if defined(Q_OS_WIN)
@@ -33,7 +29,7 @@ QString OS::language()
     return ret;
 }
 
-bool OS::login(const QString& Domain, const QString& UserID, const QString& Password)
+bool TcOS::login(const QString& Domain, const QString& UserID, const QString& Password)
 {
     bool ret = false;
   #if defined(Q_OS_WIN)
@@ -62,6 +58,4 @@ bool OS::login(const QString& Domain, const QString& UserID, const QString& Pass
   #endif
     return ret;
 }
-
-} // namespace TIANCHI
 

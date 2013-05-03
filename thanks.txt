@@ -13,3 +13,4 @@
 2013.04.21  XChinux             增加 class Gui/FlowLayout
 2013.04.22  roywillow/XChinux   增加 class Gui/GlowEffect
 2012.04.22  XChinux             增加 class Gui/LineEdit, 增强型LineEdit
+2013.05.02  XChinux             增加 class File/ExcelReader

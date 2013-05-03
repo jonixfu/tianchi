@@ -1,9 +1,6 @@
-#include "Network/SingleInstance.h"
+#include "tianchi/Network/SingleInstance.h"
 
-namespace TIANCHI
-{
-
-void SingleInstance::init(QObject* parent, QString instanceName)
+void TcSingleInstance::init(QObject* parent, QString instanceName)
 {
     m_first = false;
     m_instanceName = instanceName;
@@ -21,5 +18,3 @@ void SingleInstance::init(QObject* parent, QString instanceName)
         }
     }
 }
-
-} // namespace TIANCHI

@@ -16,5 +16,5 @@ CONFIG += staticlib
 
 WORKDIR=$$PWD/..
 
-include($$WORKDIR/src/src.pri)
+include($$WORKDIR/src/tianchi.pri)
 

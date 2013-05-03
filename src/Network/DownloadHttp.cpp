@@ -1,9 +1,6 @@
-#include <Network/DownloadHttp.h>
+#include "tianchi/Network/DownloadHttp.h"
 
-namespace TIANCHI
-{
-
-Download::Download(int index, QObject *parent)
+TcDownload::TcDownload(int index, QObject *parent)
     : QObject(parent), m_Index(index)
 {
     m_HaveDoneBytes = 0;
@@ -12,7 +9,7 @@ Download::Download(int index, QObject *parent)
     m_File = NULL;
 }
 
-void Download::StartDownload(const QUrl &url,
+void TcDownload::StartDownload(const QUrl &url,
                              QFile *file,
                              qint64 startPoint/* =0 */,
                              qint64 endPoint/* =-1 */)
@@ -39,7 +36,7 @@ void Download::StartDownload(const QUrl &url,
 }
 
 //下载结束
-void Download::FinishedSlot()
+void TcDownload::FinishedSlot()
 {
     m_File->flush();
     m_Reply->deleteLater();
@@ -49,7 +46,7 @@ void Download::FinishedSlot()
     emit DownloadFinished();
 }
 
-void Download::HttpReadyRead()
+void TcDownload::HttpReadyRead()
 {
     if ( !m_File )
         return;
@@ -62,7 +59,7 @@ void Download::HttpReadyRead()
 }
 
 //用阻塞的方式获取下载文件的长度
-qint64 DownloadList::GetFileSize(QUrl url)
+qint64 TcDownloadList::GetFileSize(QUrl url)
 {
     QNetworkAccessManager manager;
     //qDebug() << "Getting the file size...";
@@ -78,8 +75,8 @@ qint64 DownloadList::GetFileSize(QUrl url)
     return size;
 }
 
-DownloadList::DownloadList(QObject *parent)
-: QObject(parent)
+TcDownloadList::TcDownloadList(QObject *parent)
+    : QObject(parent)
 {
     m_DownloadCount = 0;
     m_FinishedNum = 0;
@@ -87,7 +84,7 @@ DownloadList::DownloadList(QObject *parent)
     m_File = new QFile;
 }
 
-void DownloadList::StartFileDownload(const QString &url, int count)
+void TcDownloadList::StartFileDownload(const QString &url, int count)
 {
     m_DownloadCount = count;
     m_FinishedNum = 0;
@@ -102,7 +99,7 @@ void DownloadList::StartFileDownload(const QString &url, int count)
     m_File->setFileName(fileName);
     //打开文件
     m_File->open(QIODevice::WriteOnly);
-    Download *tempDownload;
+    TcDownload *tempDownload;
 
     //将文件分成PointCount段，用异步的方式下载
     //qDebug() << "Start download file from " << strUrl;
@@ -115,14 +112,14 @@ void DownloadList::StartFileDownload(const QString &url, int count)
             start--;
 
         //分段下载该文件
-        tempDownload = new Download(i+1, this);
+        tempDownload = new TcDownload(i+1, this);
         connect(tempDownload, SIGNAL(DownloadFinished()), this, SLOT(SubPartFinished()));
         connect(tempDownload, SIGNAL(DownloadFinished()), tempDownload, SLOT(deleteLater()));
         tempDownload->StartDownload(m_Url, m_File, start, end);
     }
 }
 
-void DownloadList::SubPartFinished()
+void TcDownloadList::SubPartFinished()
 {
     m_FinishedNum++;
     //如果完成数等于文件段数，则说明文件下载完毕，关闭文件，发生信号
@@ -151,5 +148,3 @@ int main(int argc, char **argv)
     return 0;
 }
 */
-
-} // namespace TIANCHI
