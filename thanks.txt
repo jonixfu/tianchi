@@ -16,4 +16,9 @@
 2013.04.27  XChinux             增加 tianchidesignerplugin 插件
 2013.05.02  XChinux             增加 class File/ExcelReader
 2013.05.03  Jonix               合并 class File/ExcelReader 到 class File/MSExcel
-
+                                增加了 class Network/Udp
+                                增加了 class Sql/Database
+                                分拆 class MSExcel::Exporter 为 class TreeEx
+                                更名 LogTiny 为 Log
+                                所有类全部加前缀 Tc ，同时 typedef 为 namespace Tianchi::类名(不含Tc前缀)
+                                局部内容更新
