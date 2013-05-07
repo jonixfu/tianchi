@@ -128,16 +128,16 @@ private:
 /// @brief 映射执行对象类
 /// @author 圣域天子 Jonix@qtcn.org
 /// @date 2013-04-10
-class TIANCHI_API TcInvokeObject
+class TIANCHI_API TcInvoke
 {
 public:
     /// @brief 构造方法
-    TcInvokeObject(QObject* o=NULL, QByteArray m="")
+    TcInvoke(QObject* o=NULL, QByteArray m="")
     {
         init(o, m);
     }
     /// @brief 复制对象
-    TcInvokeObject &operator=(const TcInvokeObject& from)
+    TcInvoke &operator=(const TcInvoke& from)
     {
         if ( this != &from )
         {

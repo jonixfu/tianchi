@@ -20,8 +20,21 @@
 #include <QtConcurrentRun>
 #include <QResizeEvent>
 #include <QDesktopServices>
+#include <QPropertyAnimation>
 
+class TcMarqueeLabelPrivate
+{
+    Q_DECLARE_PUBLIC(TcMarqueeLabel)
 
+public:
+    explicit TcMarqueeLabelPrivate(TcMarqueeLabel *qptr);
+    ~TcMarqueeLabelPrivate();
+
+    void _q_openLink(const QString &url);
+
+    QPropertyAnimation *animation;
+    TcMarqueeLabel *q_ptr;
+};
 
 TcMarqueeLabelPrivate::TcMarqueeLabelPrivate(TcMarqueeLabel *qptr)
     : q_ptr(qptr)

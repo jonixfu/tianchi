@@ -1,9 +1,11 @@
 #ifndef TIANCHI_FORMUTILS_H
 #define TIANCHI_FORMUTILS_H
 
+#include "tianchi/Global.h"
+
 #include <QWidget>
 
-class TcFormUtils
+class TIANCHI_API TcFormUtils
 {
 public:
     TcFormUtils();

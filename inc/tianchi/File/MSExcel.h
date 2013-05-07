@@ -121,9 +121,4 @@ public:
 
 };
 
-namespace Tianchi
-{
-    typedef ::TcMSExcel MSExcel;
-}
-
 #endif // TIANCHI_MSEXCEL_H

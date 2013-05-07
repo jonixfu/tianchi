@@ -21,6 +21,8 @@
 #include "tianchi/File/MSExcel.h"
 
 #include <QTreeWidget>
+#include <QLabel>
+#include <QDoubleSpinBox>
 
 class TcTreeExPrivate;
 
@@ -65,12 +67,38 @@ private:
     Q_DISABLE_COPY(TcTreeEx)
     Q_DECLARE_PRIVATE(TcTreeEx)
     TcTreeExPrivate*   d_ptr;
+
+public:
+    static void createColumnMenu(QTreeWidget* widget, QWidget* object, const QString& methodName);
+
+    static void setColumnBolds(QTreeWidget* widget);
+    static void setColumnWidth(QTreeWidget* widget, int column, int width, bool hide=false);
+    static void setColumnStyle(QTreeWidget* widget, int fontSize=8, const QString &fontName="Tahoma");
+
+    static void CopyCellObject(QTreeWidget* view, int copyMode);
 };
 
-namespace Tianchi
+class TIANCHI_API TcTreeItem : public QTreeWidgetItem
 {
-    typedef ::TcTreeEx TreeEx;
-}
+public:
+    void setCellFont(int col, bool bold=false, int alignment=Qt::AlignVCenter | Qt::AlignLeft);
+    void setCellStyle(int startCol=-1, int endCol=-1,
+                      bool bold=true, int alignment=Qt::AlignVCenter | Qt::AlignRight,
+                      int cellHeight=25);
+    void setCellColor(int col, QColor color);
 
+    QLabel*         createLabel(int col, const QString& htmlText, const QVariant& data=QVariant());
+    QDoubleSpinBox* createDoubleSpinBox(int col,
+                                        int decimals, double min, double max, double step, double value);
+    double          readDoubleSpinBoxValue(int col);
+
+    void showValue(int column, const char* text, const QVariant& data=QVariant(), int size=0);
+    void showValue(int column, const QString& text, const QVariant& data=QVariant(), int size=0);
+    void showValue(int column, const QByteArray& text, const QVariant& data=QVariant(), int size=0);
+    void showValue(int column, double value);
+    void showValue(int column, double value, int digits);
+    void showPrice(int column, double value, int digits=0);
+    void showPercent(int column, double value=0.0, int digits=0);
+};
 
 #endif // TIANCHI_TREEEX_H

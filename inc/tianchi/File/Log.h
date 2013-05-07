@@ -71,7 +71,7 @@ private:
     QString m_FileName;
 };
 
-/// @brief 向日志输出代码所在文件和行号，用于运行时跟踪执行步骤。
+//// @brief 向日志输出代码所在文件和行号，用于运行时跟踪执行步骤。
 //#define Log_Step TIANCHI_NAMESPACE::Log.write("<<STEP>>", __FILE__, __LINE__);
 
 ///// @brief 调试模式下输出日志，自动添加代码所在文件和行号。

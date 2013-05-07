@@ -47,27 +47,34 @@ Tianchi C++ library for Qt
     Windows 下建议为 D:\Projects\Tianchi
 
     编译静态链接库：
-        打开并编译：D:\Projects\Tianchi\build\tianchi_s.pro
-        生成静态库：D:\Projects\Tianchi\build\staticlib\
+        打开并编译：D:\Projects\Tianchi\build\tianchi_lib.pro
+        生成静态库：D:\Projects\Tianchi\build\lib\tianchid_lib.lib (debug  版)
+                   D:\Projects\Tianchi\build\lib\tianchi_lib.lib  (release版)
 
         ※ 编译静态链接库，或直接引入源码编译器，不要定义 TIANCHI_EXPORT 或 TIANCHI_IMPORT
            DEFINES -= TIANCHI_EXPORT
            DEFINES -= TIANCHI_IMPORT
 
     编译动态链接库：
-        打开并编译：D:\Projects\Tianchi\build\tianchi.pro
-        生成静态库：D:\Projects\Tianchi\build\dll_lib\
+        打开并编译：D:\Projects\Tianchi\build\tianchi_dll.pro
+        生成静态库：D:\Projects\Tianchi\build\lib\tianchid.dll(so) (debug  版)
+	           D:\Projects\Tianchi\build\lib\tianchi.dll(so)  (release版)
 
-        ※ 编译 dll 时请在 .pro 中添加：
+        ※ 编译 dll(so) 时请在 .pro 中添加：
            DEFINES += TIANCHI_EXPORT
 
-        ※ 编译使用 tianchi.dll 的 exe 时请在 .pro 中添加：
+        ※ 编译使用 tianchi.dll(so) 的 exe 时请在 .pro 中添加：
         DEFINES += TIANCHI_IMPORT
  
-        ※※ debug 版的 exe 请使用 debug 版的 dll 
+        ※※ debug 版的 exe 请使用 debug 版的 dll (文件名末尾加有d字样)
              release 版的 exe 请使用 relase 版的 dll
              否则可能会出现运行错误。
 
+    使用 designer/qtcreator 插件:
+        打开并编译: D:\Projects\Tianchi\build\plugins.pro
+        生成的插件文件在 D:\Projects\Tianchi\lib\TcPlugins.dll(so)，将其拷贝到$QTDIR
+                   \plugins\designer 目录下重启designer程序即可, 将其拷贝到
+                    QtCreator 安装目录下的 bin\designer 目录下重启qtcreator即可
 
 ====================================================================================
 天池共享资源库用户许可协议

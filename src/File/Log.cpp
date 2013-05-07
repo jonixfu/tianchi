@@ -1,4 +1,4 @@
-#include "tianchi/File/LogTiny.h"
+#include "tianchi/File/Log.h"
 
 #include <QCoreApplication>
 #include <QDir>
@@ -6,10 +6,6 @@
 #include <QFileInfo>
 #include <QDateTime>
 #include <QTextStream>
-
-///**
-// * @brief TcLog 全局 Log for Qt 实例，可在应用程序中直接使用。
-// */
 
 void TcLog::setAppFile(const QString& AppFile)
 {

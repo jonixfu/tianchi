@@ -6,5 +6,5 @@
 # ===========================================================================
 WORKDIR=$$PWD/..
 
-include($$PWD/../src/Plugin.pri)
+include($$PWD/../src/plugins.pri)
 

@@ -20,6 +20,9 @@ QByteArray TcString::first(QByteArray& str, const QByteArray& split)
     {
         ret = str.left(endOf);
         str.remove(0, endOf +1);
+    }else
+    {
+        ret = str;
     }
     return ret;
 }

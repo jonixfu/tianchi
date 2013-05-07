@@ -20,23 +20,13 @@
 #include "tianchi/Global.h"
 
 #include <QLabel>
-#include <QPropertyAnimation>
 
-class QT_PREPEND_NAMESPACE(QResizeEvent);
-class TcMarqueeLabel;
-class TcMarqueeLabelPrivate
-{
-    Q_DECLARE_PUBLIC(TcMarqueeLabel)
+QT_BEGIN_NAMESPACE
+class QEvent;
+class QResizeEvent;
+QT_END_NAMESPACE
 
-public:
-    explicit TcMarqueeLabelPrivate(TcMarqueeLabel *qptr);
-    ~TcMarqueeLabelPrivate();
-
-    void _q_openLink(const QString &url);
-
-    QPropertyAnimation *animation;
-    TcMarqueeLabel *q_ptr;
-};
+class TcMarqueeLabelPrivate;
 
 /// @brief 跑马灯类MarqueeLabel,点击时自动打开网址
 /// @author XChinux XChinux@163.com
@@ -61,9 +51,8 @@ protected:
 private:
     Q_DISABLE_COPY(TcMarqueeLabel)
     Q_DECLARE_PRIVATE(TcMarqueeLabel)
-    Q_PRIVATE_SLOT(d_func(), void _q_openLink(const QString &))
+    //Q_PRIVATE_SLOT(d_func(), void _q_openLink(const QString &))
     TcMarqueeLabelPrivate* d_ptr;
-
 };
 
 #endif

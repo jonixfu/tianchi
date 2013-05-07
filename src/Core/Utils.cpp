@@ -1,6 +1,5 @@
 #include "tianchi/Core/Utils.h"
 
-
 #include <QTextCodec>
 #include <QDateTime>
 #include <QFileInfo>
@@ -84,16 +83,6 @@ char TcUtils::typeFrom(QVariant::Type type)
 
     }
     return c;
-}
-
-QString TcUtils::YYYY_MM_DD_HH_MM_SS_ZZZ()
-{
-    return QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss.zzz");
-}
-
-QString TcUtils::YYYY_MM_DD_HH_MM_SS()
-{
-    return QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss");
 }
 
 QDateTime TcUtils::toDateTime(const QString& text)
@@ -208,3 +197,34 @@ QDateTime TcUtils::complieDateTime(const QString& complieDate, const QString& co
                      QTime(Hour.toInt(), Minute.toInt(), Second.toInt()));
 }
 
+QByteArray TcUtils::addField(const QString& key, const QVariant& value)
+{
+    QByteArray bytes = value.toByteArray();
+
+    return QByteArray()
+            .append(key.toLower()).append('\0')
+            .append(typeFrom(value.type())).append('\0')
+            .append(QByteArray::number(bytes.length())).append('\0')
+            .append(bytes);
+}
+
+QHash<QString, QByteArray> TcUtils::byFields(const QByteArray& fieldBytes)
+{
+    QHash<QString, QByteArray>  ret;
+
+    int pos1 = 0;
+    int pos2 = fieldBytes.indexOf('\0');
+    while(pos2>=0)
+    {
+        QString key = fieldBytes.mid(pos1, pos2);
+        pos1 = fieldBytes.indexOf('\0', ++pos2);
+        QString type = fieldBytes.mid(pos2, pos1-pos2);
+        pos2 = fieldBytes.indexOf('\0', ++pos1);
+        int len = fieldBytes.mid(pos1, pos2-pos1).toInt();
+        QByteArray value = fieldBytes.mid(++pos2, len);
+        pos1 = pos2+len;
+        ret[key] = value;
+        pos2 = fieldBytes.indexOf('\0', pos1);
+    }
+    return ret;
+}

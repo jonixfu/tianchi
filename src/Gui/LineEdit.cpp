@@ -26,6 +26,7 @@ class TcLineEditPrivate
 public:
     explicit TcLineEditPrivate(TcLineEdit *qptr);
     ~TcLineEditPrivate();
+    void _q_editingFinished();
     TcLineEdit *q_ptr;
     QString labelText;
     QVariant userData;
@@ -33,10 +34,22 @@ public:
 
 TcLineEditPrivate::TcLineEditPrivate(TcLineEdit *qptr) : q_ptr(qptr)
 {
+    QObject::connect(q_ptr, SIGNAL(editingFinished()),
+            q_ptr, SLOT(_q_openLink()));
 }
 
 TcLineEditPrivate::~TcLineEditPrivate()
 {
+}
+
+void TcLineEditPrivate::_q_editingFinished()
+{
+    Q_Q(TcLineEdit);
+    if (q->text().isEmpty())
+    {
+        q->setData(QVariant());
+        q->setLabelText(QString());
+    }
 }
 
 TcLineEdit::TcLineEdit(QWidget * parent)
@@ -70,7 +83,7 @@ void TcLineEdit::setLabelText(const QString &labelText)
     }
     d->labelText = labelText;
     update();
-    emit labelTextChanged(labelText);
+    Q_EMIT labelTextChanged(labelText);
 }
 
 void TcLineEdit::setData(const QVariant &userData)
@@ -81,7 +94,14 @@ void TcLineEdit::setData(const QVariant &userData)
         return;
     }
     d->userData = userData;
-    emit dataChanged(userData);
+    Q_EMIT dataChanged(userData);
+}
+
+void TcLineEdit::clear()
+{
+    QLineEdit::clear();
+    setLabelText(QString());
+    setData(QVariant());
 }
 
 void TcLineEdit::paintEvent(QPaintEvent *event)
@@ -117,7 +137,7 @@ void TcLineEdit::paintEvent(QPaintEvent *event)
 void TcLineEdit::mouseDoubleClickEvent(QMouseEvent *event)
 {
     QLineEdit::mouseDoubleClickEvent(event);
-    emit doubleClicked();
+    Q_EMIT doubleClicked();
 }
 
 void TcLineEdit::contextMenuEvent(QContextMenuEvent *event)

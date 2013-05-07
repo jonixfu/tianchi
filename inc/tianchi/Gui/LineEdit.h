@@ -64,6 +64,8 @@ public Q_SLOTS:
     void setLabelText(const QString &labelText);
     /// @brief set data property
     void setData(const QVariant &userData);
+    /// @brief clear text/labelText/data property
+    void clear();
 protected:
     virtual void paintEvent(QPaintEvent *event);
     virtual void mouseDoubleClickEvent(QMouseEvent *event);

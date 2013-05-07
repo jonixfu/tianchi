@@ -25,13 +25,16 @@ CONFIG(static, static|shared) | CONFIG(staticlib, staticlib|shared) {
 } else {
     DEFINES += TIANCHI_EXPORT
 }
-DESTDIR = $$WORKDIR/lib
 
-#win32-g++*     : DESTDIR = $$WORKDIR/lib/mingw32
-#win32-msvc2005 : DESTDIR = $$WORKDIR/lib/vc2005_x86
-#win32-msvc2008 : DESTDIR = $$WORKDIR/lib/vc2008_x86
-#win32-msvc2010 : DESTDIR = $$WORKDIR/lib/vc2010_x86
-#win32-msvc2012 : DESTDIR = $$WORKDIR/lib/vc2012_x86
+win32-g++*     : DESTDIR = $$WORKDIR/lib/mingw32
+win32-msvc2005 : DESTDIR = $$WORKDIR/lib/vc2005_x86
+win32-msvc2008 : DESTDIR = $$WORKDIR/lib/vc2008_x86
+win32-msvc2010 : DESTDIR = $$WORKDIR/lib/vc2010_x86
+win32-msvc2012 : DESTDIR = $$WORKDIR/lib/vc2012_x86
+
+# !!!!!!!!!!!!!!!!!!!!!!!!!!!!
+# 强设为 lib 目录
+#DESTDIR = $$WORKDIR/lib
 
 INCLUDEPATH += $$INC
 
@@ -52,7 +55,7 @@ HEADERS += \
     $$INC/tianchi/Core/String.h \
     $$INC/tianchi/Core/Utils.h \
     $$INC/tianchi/File/Json.h \
-    $$INC/tianchi/File/LogTiny.h \
+    $$INC/tianchi/File/Log.h \
     $$INC/tianchi/File/MSExcel.h \
     $$INC/tianchi/File/File.h \
     $$INC/tianchi/File/Directory.h \
@@ -65,9 +68,12 @@ HEADERS += \
     $$INC/tianchi/Gui/GuiUtils.h \
     $$INC/tianchi/Gui/HeaderSetupDialog.h \
     $$INC/tianchi/Gui/FormUtils.h \
+    $$INC/tianchi/Network/Udp.h \
     $$INC/tianchi/Network/DownloadHttp.h \
     $$INC/tianchi/Network/SingleInstance.h \
     $$INC/tianchi/Sql/MSSQL.h \
+    $$INC/tianchi/Sql/DataAccess.h \
+    $$INC/tianchi/Sql/Database.h \
     $$INC/tianchi/Widget/TreeEx.h \
     $$INC/tianchi/OS/OS.h
 
@@ -78,7 +84,7 @@ SOURCES += \
     $$SRC/Core/Common.cpp \
     $$SRC/Core/String.cpp \
     $$SRC/File/Json.cpp \
-    $$SRC/File/LogTiny.cpp \
+    $$SRC/File/Log.cpp \
     $$SRC/File/MSExcel.cpp \
     $$SRC/File/File.cpp \
     $$SRC/File/Directory.cpp \
@@ -91,9 +97,12 @@ SOURCES += \
     $$SRC/Gui/HeaderSetupDialog.cpp \
     $$SRC/Gui/GuiUtils.cpp \
     $$SRC/Gui/FormUtils.cpp \
+    $$SRC/Network/Udp.cpp \
     $$SRC/Network/DownloadHttp.cpp \
     $$SRC/Network/SingleInstance.cpp \
     $$SRC/Sql/MSSQL.cpp \
+    $$SRC/Sql/DataAccess.cpp \
+    $$SRC/Sql/Database.cpp \
     $$SRC/Widget/TreeEx.cpp \
     $$SRC/OS/OS.cpp
 

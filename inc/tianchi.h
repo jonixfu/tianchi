@@ -25,21 +25,75 @@
 #include "tianchi/File/Directory.h"
 #include "tianchi/File/File.h"
 #include "tianchi/File/Json.h"
-#include "tianchi/File/LogTiny.h"
+#include "tianchi/File/Log.h"
 #include "tianchi/File/MSExcel.h"
 
 #include "tianchi/Gui/FormUtils.h"
-#include "tianchi/Gui/ClickLabel.h"
-#include "tianchi/Gui/DateEdit.h"
 #include "tianchi/Gui/GuiUtils.h"
-#include "tianchi/Gui/MarqueeLabel.h"
-#include "tianchi/Gui/HeaderSetupDialog.h"
 
+#include "tianchi/Network/Udp.h"
 #include "tianchi/Network/DownloadHttp.h"
 #include "tianchi/Network/SingleInstance.h"
 
 #include "tianchi/OS/OS.h"
 
+#include "tianchi/Sql/DataAccess.h"
+#include "tianchi/Sql/Database.h"
 #include "tianchi/Sql/MSSQL.h"
+
+#include "tianchi/Widget/TreeEx.h"
+
+// 以下为控件
+#include "tianchi/Gui/ClickLabel.h"
+#include "tianchi/Gui/DateEdit.h"
+#include "tianchi/Gui/HeaderSetupDialog.h"
+#include "tianchi/Gui/MarqueeLabel.h"
+
+namespace Tianchi
+{
+typedef ::TcChinese             Chinese;
+
+typedef ::TcPlayer              Player;
+typedef ::TcInvoke              Invoke;
+typedef ::TcDBFields            DBFields;
+typedef ::TcString              String;
+typedef ::TcStringList          StringList;
+
+typedef ::TcUtils               Utils;
+
+typedef ::TcDirectory           Directory;
+
+typedef ::TcFile                File;
+typedef ::TcJSONObject          JSONObject;
+typedef ::TcLog                 Log;
+typedef ::TcMSExcel             MSExcel;
+
+typedef ::TcFormUtils           FormUtils;
+
+typedef ::TcCursorCustom        CursorCustom;
+typedef ::TcCursorWait          CursorWait;
+typedef ::TcCursorBusy          CursorBusy;
+
+typedef ::TcDownload            Download;
+typedef ::TcDownloadList        DownloadList;
+typedef ::TcSingleInstance      SingleInstance;
+typedef ::TcUdp                 Udp;
+
+typedef ::TcOS                  OS;
+
+typedef ::TcDatabase            Database;
+typedef ::TcMSSQL               MSSQL;
+
+typedef ::TcTreeEx              TreeEx;
+typedef ::TcTreeItem            TreeItem;
+
+
+// 以下为控件
+typedef ::TcClickLabel          ClickLabel;
+typedef ::TcDateEdit            DateEdit;
+typedef ::TcHeaderSetupDialog   HeaderSetupDialog;
+typedef ::TcMarqueeLabel        MarqueeLabel;
+
+}
 
 #endif // TIANCHI_H
