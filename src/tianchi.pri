@@ -1,4 +1,4 @@
-INC=$$WORKDIR/inc
+INC=$$WORKDIR/include
 SRC=$$WORKDIR/src
 RES=$$WORKDIR/res
 
@@ -33,8 +33,8 @@ win32-msvc2010 : DESTDIR = $$WORKDIR/lib/vc2010_x86
 win32-msvc2012 : DESTDIR = $$WORKDIR/lib/vc2012_x86
 
 # !!!!!!!!!!!!!!!!!!!!!!!!!!!!
-# 强设为 lib 目录
-#DESTDIR = $$WORKDIR/lib
+# 强锟斤拷为 lib 目录
+DESTDIR = $$WORKDIR/lib
 
 INCLUDEPATH += $$INC
 
@@ -48,66 +48,74 @@ win32:LIBS += -lversion
 win32-msvc*:LIBS += -ladvapi32 -lole32
 HEADERS += \
     $$INC/tianchi.h \
-    $$INC/tianchi/Global.h \
-    $$INC/tianchi/Chinese/Chinese.h \
-    $$INC/tianchi/Core/Classes.h \
-    $$INC/tianchi/Core/Common.h \
-    $$INC/tianchi/Core/String.h \
-    $$INC/tianchi/Core/Utils.h \
-    $$INC/tianchi/File/Json.h \
-    $$INC/tianchi/File/Log.h \
-    $$INC/tianchi/File/MSExcel.h \
-    $$INC/tianchi/File/File.h \
-    $$INC/tianchi/File/Directory.h \
-    $$INC/tianchi/Gui/MarqueeLabel.h \
-    $$INC/tianchi/Gui/ClickLabel.h \
-    $$INC/tianchi/Gui/LineEdit.h \
-    $$INC/tianchi/Gui/FlowLayout.h \
-    $$INC/tianchi/Gui/GlowEffect.h \
-    $$INC/tianchi/Gui/DateEdit.h \
-    $$INC/tianchi/Gui/GuiUtils.h \
-    $$INC/tianchi/Gui/HeaderSetupDialog.h \
-    $$INC/tianchi/Gui/FormUtils.h \
-    $$INC/tianchi/Network/Udp.h \
-    $$INC/tianchi/Network/DownloadHttp.h \
-    $$INC/tianchi/Network/SingleInstance.h \
-    $$INC/tianchi/Sql/MSSQL.h \
-    $$INC/tianchi/Sql/DataAccess.h \
-    $$INC/tianchi/Sql/Database.h \
-    $$INC/tianchi/Widget/TreeEx.h \
-    $$INC/tianchi/OS/OS.h
+    $$INC/TcGlobal.h \
+    $$INC/Chinese/TcChinese.h \
+    $$INC/Core/TcClasses.h \
+    $$INC/Core/TcCommon.h \
+    $$INC/Core/TcString.h \
+    $$INC/Core/TcUtils.h \
+    $$INC/Core/TcError.h \
+    $$INC/File/TcDir.h \
+    $$INC/File/TcExcelReader.h \
+    $$INC/File/TcFile.h \
+    $$INC/File/TcFileIO.h \
+    $$INC/File/TcJson.h \
+    $$INC/File/TcKeyValue.h \
+    $$INC/File/TcLog.h \
+    $$INC/File/TcMSExcel.h \
+    $$INC/Gui/TcMarqueeLabel.h \
+    $$INC/Gui/TcClickLabel.h \
+    $$INC/Gui/TcLineEdit.h \
+    $$INC/Gui/TcFlowLayout.h \
+    $$INC/Gui/TcGlowEffect.h \
+    $$INC/Gui/TcDateEdit.h \
+    $$INC/Gui/TcGuiUtils.h \
+    $$INC/Gui/TcFormUtils.h \
+    $$INC/Network/TcUdp.h \
+    $$INC/Network/TcDownloadHttp.h \
+    $$INC/Network/TcSingleInstance.h \
+    $$INC/Sql/TcDatabase.h \
+    $$INC/Sql/TcDataAccess.h \
+    $$INC/Sql/TcMSSQL.h \
+    $$INC/Widget/TcTreeEx.h \
+    $$INC/Widget/TcHeaderSetupDialog.h \
+    $$INC/OS/TcOS.h
 
 SOURCES += \
-    $$SRC/Chinese/Chinese.cpp \
-    $$SRC/Core/Classes.cpp \
-    $$SRC/Core/Utils.cpp \
-    $$SRC/Core/Common.cpp \
-    $$SRC/Core/String.cpp \
-    $$SRC/File/Json.cpp \
-    $$SRC/File/Log.cpp \
-    $$SRC/File/MSExcel.cpp \
-    $$SRC/File/File.cpp \
-    $$SRC/File/Directory.cpp \
-    $$SRC/Gui/MarqueeLabel.cpp \
-    $$SRC/Gui/ClickLabel.cpp \
-    $$SRC/Gui/LineEdit.cpp \
-    $$SRC/Gui/FlowLayout.cpp \
-    $$SRC/Gui/GlowEffect.cpp \
-    $$SRC/Gui/DateEdit.cpp \
-    $$SRC/Gui/HeaderSetupDialog.cpp \
-    $$SRC/Gui/GuiUtils.cpp \
-    $$SRC/Gui/FormUtils.cpp \
-    $$SRC/Network/Udp.cpp \
-    $$SRC/Network/DownloadHttp.cpp \
-    $$SRC/Network/SingleInstance.cpp \
-    $$SRC/Sql/MSSQL.cpp \
-    $$SRC/Sql/DataAccess.cpp \
-    $$SRC/Sql/Database.cpp \
-    $$SRC/Widget/TreeEx.cpp \
-    $$SRC/OS/OS.cpp
+    $$SRC/Chinese/TcChinese.cpp \
+    $$SRC/Core/TcClasses.cpp \
+    $$SRC/Core/TcUtils.cpp \
+    $$SRC/Core/TcCommon.cpp \
+    $$SRC/Core/TcString.cpp \
+    $$SRC/Core/TcError.cpp \
+    $$SRC/File/TcDir.cpp \
+    $$SRC/File/TcExcelReader.cpp \
+    $$SRC/File/TcFile.cpp \
+    $$SRC/File/TcFileIO.cpp \
+    $$SRC/File/TcJson.cpp \
+    $$SRC/File/TcKeyValue.cpp \
+    $$SRC/File/TcLog.cpp \
+    $$SRC/File/TcMSExcel.cpp \
+    $$SRC/Gui/TcMarqueeLabel.cpp \
+    $$SRC/Gui/TcClickLabel.cpp \
+    $$SRC/Gui/TcLineEdit.cpp \
+    $$SRC/Gui/TcFlowLayout.cpp \
+    $$SRC/Gui/TcGlowEffect.cpp \
+    $$SRC/Gui/TcDateEdit.cpp \
+    $$SRC/Gui/TcGuiUtils.cpp \
+    $$SRC/Gui/TcFormUtils.cpp \
+    $$SRC/Network/TcUdp.cpp \
+    $$SRC/Network/TcDownloadHttp.cpp \
+    $$SRC/Network/TcSingleInstance.cpp \
+    $$SRC/Sql/TcDataAccess.cpp \
+    $$SRC/Sql/TcDatabase.cpp \
+    $$SRC/Sql/TcMSSQL.cpp \
+    $$SRC/Widget/TcTreeEx.cpp \
+    $$SRC/Widget/TcHeaderSetupDialog.cpp \
+    $$SRC/OS/TcOS.cpp
 
 FORMS += \
-    $$SRC/Gui/HeaderSetupDialog.ui
+    $$SRC/Widget/TcHeaderSetupDialog.ui
 
 RESOURCES += \
     $$RES/tianchi.qrc

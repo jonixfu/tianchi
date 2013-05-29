@@ -1,4 +1,4 @@
-INC=$$WORKDIR/inc
+INC=$$WORKDIR/include
 SRC=$$WORKDIR/src
 RES=$$WORKDIR/res
 
@@ -38,16 +38,16 @@ greaterThan(QT_MAJOR_VERSION, 4) {
     CONFIG += designer plugin
 }
 
-HEADERS += $$SRC/Plugin/LineEditPlugin.h      $$INC/tianchi/Gui/LineEdit.h \
-           $$SRC/Plugin/MarqueeLabelPlugin.h  $$INC/tianchi/Gui/MarqueeLabel.h \
-           $$SRC/Plugin/ClickLabelPlugin.h    $$INC/tianchi/Gui/ClickLabel.h \
-           $$SRC/Plugin/DateEditPlugin.h      $$INC/tianchi/Gui/DateEdit.h \
+HEADERS += $$SRC/Plugin/TcLineEditPlugin.h      $$INC/Gui/TcLineEdit.h \
+           $$SRC/Plugin/TcMarqueeLabelPlugin.h  $$INC/Gui/TcMarqueeLabel.h \
+           $$SRC/Plugin/TcClickLabelPlugin.h    $$INC/Gui/TcClickLabel.h \
+           $$SRC/Plugin/TcDateEditPlugin.h      $$INC/Gui/TcDateEdit.h \
            $$SRC/Plugin/TianchiPlugins.h \
-           $$INC/tianchi/Core/Utils.h
+           $$INC/Core/TcUtils.h
 
-SOURCES += $$SRC/Plugin/LineEditPlugin.cpp     $$SRC/Gui/LineEdit.cpp \
-           $$SRC/Plugin/MarqueeLabelPlugin.cpp $$SRC/Gui/MarqueeLabel.cpp \
-           $$SRC/Plugin/ClickLabelPlugin.cpp   $$SRC/Gui/ClickLabel.cpp \
-           $$SRC/Plugin/DateEditPlugin.cpp     $$SRC/Gui/DateEdit.cpp \
+SOURCES += $$SRC/Plugin/TcLineEditPlugin.cpp     $$SRC/Gui/TcLineEdit.cpp \
+           $$SRC/Plugin/TcMarqueeLabelPlugin.cpp $$SRC/Gui/TcMarqueeLabel.cpp \
+           $$SRC/Plugin/TcClickLabelPlugin.cpp   $$SRC/Gui/TcClickLabel.cpp \
+           $$SRC/Plugin/TcDateEditPlugin.cpp     $$SRC/Gui/TcDateEdit.cpp \
            $$SRC/Plugin/TianchiPlugins.cpp \
-           $$SRC/Core/Utils.cpp
+           $$SRC/Core/TcUtils.cpp

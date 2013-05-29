@@ -1,19 +1,19 @@
 #include <QtPlugin>
 
 #include "TianchiPlugins.h"
-#include "DateEditPlugin.h"
-#include "LineEditPlugin.h"
-#include "ClickLabelPlugin.h"
-#include "MarqueeLabelPlugin.h"
+#include "TcDateEditPlugin.h"
+#include "TcLineEditPlugin.h"
+#include "TcClickLabelPlugin.h"
+#include "TcMarqueeLabelPlugin.h"
 
 
 TianchiPlugins::TianchiPlugins(QObject *parent)
     : QObject(parent)
 {
-    m_plugins.append(new DateEditPlugin(this));
-    m_plugins.append(new LineEditPlugin(this));
-    m_plugins.append(new ClickLabelPlugin(this));
-    m_plugins.append(new MarqueeLabelPlugin(this));
+    m_plugins.append(new TcDateEditPlugin(this));
+    m_plugins.append(new TcLineEditPlugin(this));
+    m_plugins.append(new TcClickLabelPlugin(this));
+    m_plugins.append(new TcMarqueeLabelPlugin(this));
 }
 
 QList<QDesignerCustomWidgetInterface*> TianchiPlugins::customWidgets()

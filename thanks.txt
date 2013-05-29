@@ -22,3 +22,9 @@
                                 更名 LogTiny 为 Log
                                 所有类全部加前缀 Tc ，同时 typedef 为 namespace Tianchi::类名(不含Tc前缀)
                                 局部内容更新
+2013.05.27  cnhemiya	        增加 class File/TcFileIO
+			        一些文件复制和提取功能
+			        增加 class Core/TcTuple 
+			        简单的 Tuple(元组) 模版类
+			        增加 class Core/TcSingleton
+			        用指针实现的单例模式的模版类
